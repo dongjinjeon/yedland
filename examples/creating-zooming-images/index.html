@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+
+    <link rel="shortcut icon" type="image/png" href="/images/logo16.png">
+    <title>Creating Zooming Images | OpenSeadragon</title>
+
+    <link rel='stylesheet' 
+          type='text/css'
+          media='screen'
+          href='/css/style.css'/>
+
+    <script src="/openseadragon/openseadragon.min.js"></script>
+</head>
+
+<body>
+    <a href="https://github.com/openseadragon/openseadragon"><img 
+       style="position: absolute; top: 0; right: 0; border: 0;" 
+       src="/images/forkme_right_darkblue_121621.png" 
+       alt="Fork me on GitHub" /></a>
+    <div id="container">
+        <div class="download">
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.zip">
+                <img border="0" width="90" src="/images/zip.png"></a>
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.tar.gz">
+                <img border="0" width="90" src="/images/tar.png"></a>
+        </div>
+        <img class="logo" src="/images/logo.png">
+        <h1>
+            <a href="/">OpenSeadragon</a><span class="version">
+                3.1.0
+            </span>
+            <span class="tagline">
+            </span>
+        </h1>
+
+        <div class='navigation'>
+            <ul>
+                <li><a href='/#examples-and-features'
+                    >Examples &amp; Features</a></li>
+                <li><a href='/#plugins'
+                    >Plugins</a></li>
+                <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+                <li><a href='/#download'
+                    >Download &amp; Install</a></li>
+                <li><a href='/docs/'
+                    >API Documentation</a></li>
+                <li><a href='/#support'
+                    >Support</a></li>
+                <li><a href='/#development'
+                    >Development</a></li>
+                <li><a href='/#license'
+                    >License</a></li>
+            </ul>
+        </div>
+
+        <h2>Creating Zooming Images</h2>
+
+<p>OpenSeadragon works with a <a href="/#examples-and-features">variety of zooming image formats</a>. These zooming images generally consist of a number of individual tiles, organized so they can be accessed as needed. If you have a large image you'd like to zoom, you'll need to convert it first. There are a number of conversion options depending on your needs.</p>
+<!-- <p>Probably the easiest is to use <a href="http://zoom.it">Zoom.it</a>; see our <a href="/examples/tilesource-zoomit/">Zoom.it instructions</a>.</p>
+<p>Other tools include:</p> -->
+<table class="for-examples">
+    <tr>
+        <td colspan="3"><h4>DZI</h4></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/jeremytubbs/deepzoom">Deepzoom</a></td>
+        <td>PHP</td>
+        <td><a href="/examples/tilesource-dzi/">DZI</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://metacpan.org/pod/release/DRRHO/Graphics-DZI-0.05/script/deepzoom">deepzoom</a></td>
+        <td>Perl utility</td>
+        <td><a href="/examples/tilesource-dzi/">DZI</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/openzoom/deepzoom.py">deepzoom.py</a></td>
+        <td>Python</td>
+        <td><a href="/examples/tilesource-dzi/">DZI</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://www.microsoft.com/en-us/download/details.aspx?id=24819">Deep Zoom Composer</a></td>
+        <td>desktop app for Windows</td>
+        <td><a href="/examples/tilesource-dzi/">DZI</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://docs.microsoft.com/en-us/archive/blogs/expression/hello-deepzoomtools-dll-deep-zoom-image-tile-generation-made-easy">DeepZoomTools.dll</a></td>
+        <td>.NET library, comes with Deep Zoom Composer</td>
+        <td><a href="/examples/tilesource-dzi/">DZI</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/dblock/dzt">DZT</a></td>
+        <td>an image slicing library and tool written in Ruby</td>
+        <td><a href="/examples/tilesource-dzi/">DZI</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/mulka/tiler">Gmap Uploader Tiler</a></td>
+        <td>C++</td>
+        <td><a href="/examples/tilesource-dzi/">DZI</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://www.microsoft.com/en-us/download/details.aspx?id=52341">HD View Utilities</a></td>
+        <td>Photoshop plugin and command-line tool (Windows)</td>
+        <td><a href="/examples/tilesource-dzi/">DZI</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://www.microsoft.com/en-us/research/product/computational-photography-applications/image-composite-editor/">Image Composite Editor</a></td>
+        <td>panoramic image stitcher from Microsoft Research for the Windows desktop</td>
+        <td><a href="/examples/tilesource-dzi/">DZI</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/VoidVolker/MagickSlicer">MagickSlicer</a></td>
+        <td>shell script (Linux/Mac)</td>
+        <td><a href="/examples/tilesource-dzi/">DZI</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/openzoom/node-deepzoomtools">Node.js Deep Zoom Tools</a></td>
+        <td>Node.js, under construction</td>
+        <td><a href="/examples/tilesource-dzi/">DZI</a></td>
+    </tr>
+    <tr>
+        <td><a href="http://chafalladas.com/dzifiles/dzi_creator_up/dzi_creator_perl.html">OpenSeaDragon DZI Online Composer</a></td>
+        <td>Web app (and PERL and PHP scripts)</td>
+        <td><a href="/examples/tilesource-dzi/">DZI</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/nfabre/deepzoom.php">PHP Deep Zoom Tools</a></td>
+        <td>PHP</td>
+        <td><a href="/examples/tilesource-dzi/">DZI</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/usnistgov/pyramidio">PyramidIO</a></td>
+        <td>Java (command line and library)</td>
+        <td><a href="/examples/tilesource-dzi/">DZI</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://sharp.pixelplumbing.com/">Sharp</a></td>
+        <td>Node.js, uses VIPS</td>
+        <td><a href="/examples/tilesource-dzi/">DZI</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://libvips.github.io/libvips/">VIPS</a></td>
+        <td>command line tool and library for a number of languages</td>
+        <td><a href="/examples/tilesource-dzi/">DZI</a> via the <a href="https://libvips.github.io/libvips/API/current/Making-image-pyramids.md.html">dzsave</a> feature</td>
+    </tr>
+    <tr>
+        <td><a href="https://zoomable.ca/">Zoomable</a></td>
+        <td>service (<a href="https://srv2.zoomable.ca/upload_new.php">free</a> and <a href="https://community.zoomable.ca/">premium</a>), offers embeds; <a href="https://zoomable.ca/api.html">API available</a>; Image and Viewer generators for <a href="https://zoomable.ca/zoomable_for_wordpress.html">Wordpress</a>, <a href="https://zoomable.ca/create_from_photoshop.html">Photoshop</a> and <a href="https://zoomable.ca/create_from_desktop.html">Image Composite Editor</a> are available.</td>
+        <td><a href="/examples/tilesource-dzi/">DZI</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://zoomhub.net/">ZoomHub</a></td>
+        <td>service (free for personal use): <a href="https://zoomhub.net/#embed">offers embeds</a> and <a href="https://zoomhub.net/#api">developer API</a></td>
+        <td><a href="/examples/tilesource-dzi/">DZI</a></td>
+    </tr>
+    <tr>
+        <td colspan="3"><h4>IIIF</h4></td>
+    </tr>
+    <tr>
+        <td><a href="https://cantaloupe-project.github.io/">Cantaloupe</a></td>
+        <td>Server</td>
+        <td><a href="/examples/tilesource-iiif/">IIIF</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://www.iiifhosting.com/">IIIFHosting</a></td>
+        <td>
+            Service, image hosting
+        </td>
+        <td>
+            <a href="https://iiif.io/api/image/2.0/">IIIF</a>
+        </td>
+    </tr>
+    <tr>
+        <td><a href="https://iipimage.sourceforge.io/">IIPImage</a></td>
+        <td>Server</td>
+        <td><a href="/examples/tilesource-iiif/">IIIF</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://kakadusoftware.com/">Kakadu</a></td>
+        <td>
+            C++ library to encode or decode JPEG 2000 images
+            <br><br>
+            example of a batch convert script: <a href="https://github.com/DDMAL/diva.js/blob/master/legacy/process.py">process.py</a> (Diva.js project)
+        </td>
+        <td>
+            <a href="/examples/tilesource-iiif/">IIIF</a><br/>(requires a IIIF-compliant image server with JPEG 2000 support, like <a href="https://github.com/pulibrary/loris">Loris</a>; see also <a href="http://iiif.io">iiif.io</a> for more details)
+        </td>
+    </tr>
+    <tr>
+        <td><a href="https://micr.io/">Micrio</a></td>
+        <td>
+            Service (cloud-based tiling &amp; hosting), offers embeds
+        </td>
+        <td>
+            <a href="https://micr.io/iiif/image-api">IIIF</a>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3"><h4>TMS</h4></td>
+    </tr>
+    <tr>
+        <td><a href="https://gdal.org/gdal2tiles.html">GDAL2tiles</a></td>
+        <td>Python</td>
+        <td><a href="/examples/tilesource-tms/">TMS</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://www.maptiler.org/">MapTiler</a></td>
+        <td>desktop app for Windows, Mac, Linux</td>
+        <td><a href="/examples/tilesource-tms/">TMS</a></td>
+    </tr>
+    <tr>
+        <td colspan="3"><h4>Zoomify</h4></td>
+    </tr>
+    <tr>
+        <td><a href="http://www.zoomify.com/free.htm">Zoomify App</a></td>
+        <td>Free proprietary desktop app for Windows and Mac</td>
+        <td><a href="/examples/tilesource-zoomify/">Zoomify</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://sourceforge.net/projects/zoomifyimage/">Zoomify Image</a></td>
+        <td>Python</td>
+        <td><a href="/examples/tilesource-zoomify/">Zoomify</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://packagist.org/packages/daniel-km/zoomify">Zoomify Library</a></td>
+        <td>PHP, free standalone script or integrated in the open source digital library <a href="https://omeka.org/s">Omeka S</a> via the module <a href="https://github.com/Daniel-KM/Omeka-S-module-IiifServer">IIIF Server</a></td>
+        <td><a href="/examples/tilesource-zoomify/">Zoomify</a></td>
+    </tr>
+    <tr>
+        <td><a href="http://www.zoomify.com/photoshop.htm">Zoomify Plugin</a></td>
+        <td>Free proprietary export plugin for Photoshop</td>
+        <td><a href="/examples/tilesource-zoomify/">Zoomify</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/GoogleCloudPlatform/dataflow-zoomify-image/">Dataflow-zoomify-image</a></td>
+        <td>Free Google Cloud Dataflow template allowing large amounts of images to be processed in parallel</td>
+        <td><a href="/examples/tilesource-zoomify/">Zoomify</a></td>
+    </tr>
+</table>
+<br/>
+<p>If none of these options meet your needs, you can create your own tile-generating tool. See <a href="https://github.com/openseadragon/openseadragon/wiki/The-DZI-File-Format">this page</a> for more information on the DZI format.</p>
+
+
+        <ul class="footer">
+            <li><a href='/#examples-and-features'
+                >Examples &amp; Features</a></li>
+            <li><a href='/#plugins'
+                >Plugins</a></li>
+             <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+            <li><a href='/#download'
+                >Download &amp; Install</a></li>
+            <li><a href='/docs/'
+                >API Documentation</a></li>
+            <li><a href='/#support'
+                >Support</a></li>
+            <li><a href='/#development'
+                >Development</a></li>
+            <li><a href='/license/'
+                >License</a></li>
+        </ul>
+    </div>
+
+    <script> // Google Analytics
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-40891712-1', 'github.io');
+        ga('send', 'pageview');
+    </script>
+
+</body>
+</html>

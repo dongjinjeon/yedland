@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+
+    <link rel="shortcut icon" type="image/png" href="/images/logo16.png">
+    <title>Viewport Zoom and Pan | OpenSeadragon</title>
+
+    <link rel='stylesheet' 
+          type='text/css'
+          media='screen'
+          href='/css/style.css'/>
+
+    <script src="/openseadragon/openseadragon.min.js"></script>
+</head>
+
+<body>
+    <a href="https://github.com/openseadragon/openseadragon"><img 
+       style="position: absolute; top: 0; right: 0; border: 0;" 
+       src="/images/forkme_right_darkblue_121621.png" 
+       alt="Fork me on GitHub" /></a>
+    <div id="container">
+        <div class="download">
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.zip">
+                <img border="0" width="90" src="/images/zip.png"></a>
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.tar.gz">
+                <img border="0" width="90" src="/images/tar.png"></a>
+        </div>
+        <img class="logo" src="/images/logo.png">
+        <h1>
+            <a href="/">OpenSeadragon</a><span class="version">
+                3.1.0
+            </span>
+            <span class="tagline">
+            </span>
+        </h1>
+
+        <div class='navigation'>
+            <ul>
+                <li><a href='/#examples-and-features'
+                    >Examples &amp; Features</a></li>
+                <li><a href='/#plugins'
+                    >Plugins</a></li>
+                <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+                <li><a href='/#download'
+                    >Download &amp; Install</a></li>
+                <li><a href='/docs/'
+                    >API Documentation</a></li>
+                <li><a href='/#support'
+                    >Support</a></li>
+                <li><a href='/#development'
+                    >Development</a></li>
+                <li><a href='/#license'
+                    >License</a></li>
+            </ul>
+        </div>
+
+        <h2>example: zoom and pan options</h2>
+
+<p>
+OpenSeadragon provides several options for constraining the minimum and
+maximum zoom range as well as the range of panning.
+</p>
+<p>
+	These features are generally controlled through various combinations of
+	the options: <ul>
+	<li>
+            <code>panHorizontal</code> <em>(default: true)</em>
+        </li>
+        <li>
+            <code>panVertical</code> <em>(default: true)</em>
+        </li>
+        <li>
+            <code>constrainDuringPan</code> <em>(default: false)</em>
+        </li>
+        <li>
+            <code> wrapHorizontal</code> <em>(default: false)</em>
+        </li>
+        <li>
+            <code>wrapVertical</code> <em>(default: false)</em>
+        </li>
+        <li>
+            <code>visibilityRatio</code> <em>(default: 0.5)</em>
+        </li>
+        <li>
+            <code>minPixelRatio</code> <em>(default: 0.5)</em>
+        </li>
+        <li>
+            <code>minZoomImageRatio</code> <em>(default: 0.8)</em>
+        </li>
+        <li>
+            <code>maxZoomPixelRatio</code> <em>(default: 2)</em>
+        </li>
+        <li>
+            <code>defaultZoomLevel</code> <em>(default: 0)</em>
+        </li>
+        <li>
+            <code>minZoomLevel</code> <em>(default: null)</em>
+        </li>
+        <li>
+            <code>maxZoomLevel</code> <em>(default: null)</em>
+        </li>
+	</ul>
+</p>
+
+<div class="description">
+    <h3>Constraining by Viewport Visibility as a Ratio, and Constraining During Panning</h3>
+    <p>
+         The option 
+        <code>visibilityRatio</code>, which is by default <strong>0.5</strong>,
+        ensures that you cannot pan the image far enough to fill the viewport with
+        more than 50% background.  Setting it to 1, as in this example, ensures
+        the image cannot be panned to show any background. Normally OpenSeadragon
+        will enforce this by &quot;bouncing back&quot; when the drag is released.  In this
+        example we also add <code>constrainDuringPan: true</code> which stops the drag
+        immediately when it hits the bounding area.
+    </p>
+</div>
+<div class="demoarea">
+    <div class="demoheading">
+        A visibilityRatio of 1 With <code>constrainDuringPan</code> Enabled
+    </div>
+    <div id="visibility-ratio-1" class="openseadragon"></div>
+</div>
+<script type="text/javascript">
+    OpenSeadragon({
+        id:            "visibility-ratio-1",
+        prefixUrl:     "/openseadragon/images/",
+        tileSources:   "/example-images/highsmith/highsmith.dzi",
+        visibilityRatio: 1.0,
+        constrainDuringPan: true
+    });
+</script>
+<p>
+	Below is the relevant configuration.
+</p>
+<pre>OpenSeadragon({
+    ...
+    visibilityRatio: 1.0,
+    constrainDuringPan: true,
+    ...
+});
+</pre>
+
+
+<div class="description">
+    <h3>Constraining Pan Direction and Using a Default Zoom Level</h3>
+    <p>
+       In this example we combine a number of options to produce an effect
+       similar to a &quot;fit-width&quot; PDF view.
+    </p>
+</div>
+<div class="demoarea">
+    <div class="demoheading">
+        Vertical Scroll and Zoom
+    </div>
+    <div id="vertical-scrolling" class="openseadragon"></div>
+</div>
+<script type="text/javascript">
+    OpenSeadragon({
+        id:            "vertical-scrolling",
+        prefixUrl:     "/openseadragon/images/",
+        tileSources:   "/example-images/highsmith/highsmith.dzi",
+        panHorizontal: 		false,
+        defaultZoomLevel: 	1,
+        minZoomLevel: 		1,
+        maxZoomLevel: 		1,
+        visibilityRatio: 	1
+    });
+</script>
+<p>
+	Below is the relevant configuration.
+</p>
+<pre>OpenSeadragon({
+    ...
+    panHorizontal: 	false,
+    defaultZoomLevel: 	1,
+    minZoomLevel: 	1,
+    maxZoomLevel: 	1,
+    visibilityRatio: 	1,
+    ...
+});
+</pre>
+
+
+        <ul class="footer">
+            <li><a href='/#examples-and-features'
+                >Examples &amp; Features</a></li>
+            <li><a href='/#plugins'
+                >Plugins</a></li>
+             <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+            <li><a href='/#download'
+                >Download &amp; Install</a></li>
+            <li><a href='/docs/'
+                >API Documentation</a></li>
+            <li><a href='/#support'
+                >Support</a></li>
+            <li><a href='/#development'
+                >Development</a></li>
+            <li><a href='/license/'
+                >License</a></li>
+        </ul>
+    </div>
+
+    <script> // Google Analytics
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-40891712-1', 'github.io');
+        ga('send', 'pageview');
+    </script>
+
+</body>
+</html>

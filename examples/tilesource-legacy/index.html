@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+
+    <link rel="shortcut icon" type="image/png" href="/images/logo16.png">
+    <title>Legacy Tile Source | OpenSeadragon</title>
+
+    <link rel='stylesheet' 
+          type='text/css'
+          media='screen'
+          href='/css/style.css'/>
+
+    <script src="/openseadragon/openseadragon.min.js"></script>
+</head>
+
+<body>
+    <a href="https://github.com/openseadragon/openseadragon"><img 
+       style="position: absolute; top: 0; right: 0; border: 0;" 
+       src="/images/forkme_right_darkblue_121621.png" 
+       alt="Fork me on GitHub" /></a>
+    <div id="container">
+        <div class="download">
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.zip">
+                <img border="0" width="90" src="/images/zip.png"></a>
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.tar.gz">
+                <img border="0" width="90" src="/images/tar.png"></a>
+        </div>
+        <img class="logo" src="/images/logo.png">
+        <h1>
+            <a href="/">OpenSeadragon</a><span class="version">
+                3.1.0
+            </span>
+            <span class="tagline">
+            </span>
+        </h1>
+
+        <div class='navigation'>
+            <ul>
+                <li><a href='/#examples-and-features'
+                    >Examples &amp; Features</a></li>
+                <li><a href='/#plugins'
+                    >Plugins</a></li>
+                <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+                <li><a href='/#download'
+                    >Download &amp; Install</a></li>
+                <li><a href='/docs/'
+                    >API Documentation</a></li>
+                <li><a href='/#support'
+                    >Support</a></li>
+                <li><a href='/#development'
+                    >Development</a></li>
+                <li><a href='/#license'
+                    >License</a></li>
+            </ul>
+        </div>
+
+        <h2>example: legacy image pyramids</h2>
+
+<p>
+    With a &quot;legacy image pyramid&quot; (LIP), you can make use of your
+    existing images without pregenerating or dynamically creating image tiles. 
+    Web developers have commonly created multiple derivatives of various sizes
+    like &quot;thumbnail&quot;, &quot;detail&quot;, and &quot;best&quot;.
+    This is already a simple pyramid and you can use it to create a simple
+    zoomable presentation with OpenSeadragon!
+</p>
+
+<p>
+   Configuration for the Legacy Tile Source is not yet set in stone, and may
+   change in future versions.  However, the goal is to keep it very simple
+   and similar to the examples provided below.
+</p>
+
+<div class="description">
+    <h3>XMLHTTPRequest for LIP JSON</h3>
+    <p>
+        The LIP format is implied by a tile source specified as a string (URL)
+        and which does not have the </em>.js</em> extension.  The information
+        is loaded via AJAX and inspection of the content of the URL is used to
+        determine if it is JSON or XML formatted.
+    </p>
+</div>
+<div class="demoarea">
+    <div class="demoheading">
+        Example XMLHTTPRequest for LIP (XML or JSON)
+    </div>
+    <div id="example-xmlhttprequest" 
+         class="openseadragon">
+        <script type="text/javascript">
+            OpenSeadragon({
+                id:            "example-xmlhttprequest",
+                prefixUrl:     "/openseadragon/images/",
+                tileSources:   "/example-images/rbc/rbc0001/2003/rosen.xml",
+                showNavigator:  true
+            });
+        </script>
+        <noscript>
+            <p>OpenSeadragon is not available unless JavaScript is enabled.</p>
+            <img src='/example-images/rbc/rbc0001/2003/2003rosen1799/0001v.jpg'
+                 height='600'/>
+        </noscript>
+    </div>
+    <p>
+        Below is a sample LIP file formatted as JSON.
+    </p>
+<pre>
+{
+    type: 'legacy-image-pyramid',
+    levels:[{
+        url: '/example-images/rbc/rbc0001/2003/2003rosen1799/0001q.jpg',
+        height: 889,
+        width:  600
+    },{
+        url: '/example-images/rbc/rbc0001/2003/2003rosen1799/0001r.jpg',
+        height: 2201,
+        width:  1485
+    },{
+        url: '/example-images/rbc/rbc0001/2003/2003rosen1799/0001v.jpg',
+        height: 4402,
+        width:  2970
+    }]
+}
+</pre>
+<p>
+ Or the equivalent XML:
+</p>
+<pre>
+&lt;image type='legacy-image-pyramid'>
+    &lt;level
+        url='/example-images/rbc/rbc0001/2003/2003rosen1799/0001q.jpg'
+        height='889'
+        width='600'/>
+    &lt;level
+        url='/example-images/rbc/rbc0001/2003/2003rosen1799/0001r.jpg'
+        height='2201'
+        width='1485'/>
+    &lt;level
+        url='/example-images/rbc/rbc0001/2003/2003rosen1799/0001v.jpg'
+        height='4402'
+        width='2970'/>
+&lt;/image>
+</pre>
+<p>
+    Configuration is done via the <code>tileSources</code> option
+    (or programmatically).
+</p>
+<pre>
+OpenSeadragon({
+    ...
+    tileSources:   "/example-images/rbc/rbc0001/2003/rosen.xml",
+    ...
+});</pre>
+</div>
+
+
+
+<div class="description">
+    <h3>JSONP Request for LIP JSON</h3>
+    <p>
+        The LIP JSONP format is implied by a tile source specified as a string
+        and which has the </em>.js</em> extension.  The remainder of the
+        file name is expected to match the JSONP callback.
+    </p>
+</div>
+<div class="demoarea">
+    <div class="demoheading">
+        Example JSONPRequest for DZI JSON
+    </div>
+    <div id="example-jsonprequest" 
+         class="openseadragon">
+        <script type="text/javascript">
+            OpenSeadragon({
+                id:            "example-jsonprequest",
+                prefixUrl:     "/openseadragon/images/",
+                tileSources:   "/example-images/rbc/rbc0001/2003/rosen.js",
+                showNavigator:  true
+            });
+        </script>
+        <noscript>
+            <p>OpenSeadragon is not available unless JavaScript is enabled.</p>
+            <img src='/example-images/rbc/rbc0001/2003/2003rosen1799/0001v.jpg'
+                 height='600'/>
+        </noscript>
+    </div>
+    <p>
+        Below is a sample DZI file formatted as JSONP.
+    </p>
+<pre>
+rosen({
+    type: 'legacy-image-pyramid',
+    levels:[{
+        url: '/example-images/rbc/rbc0001/2003/2003rosen1799/0001q.jpg',
+        height: 889,
+        width:  600
+    },{
+        url: '/example-images/rbc/rbc0001/2003/2003rosen1799/0001r.jpg',
+        height: 2201,
+        width:  1485
+    },{
+        url: '/example-images/rbc/rbc0001/2003/2003rosen1799/0001v.jpg',
+        height: 4402,
+        width:  2970
+    }]
+});</pre>
+    <p>
+        Configuration is done via the <code>tileSources</code> option
+        (or programmatically).
+    </p>
+<pre>
+OpenSeadragon({
+    ...
+    tileSources:   "/example-images/rbc/rbc0001/2003/rosen.js",
+    ...
+});</pre>
+</div>
+
+
+
+<div class="description">
+    <h3>Inline Configuration for Legacy Tile Sources</h3>
+    <p>
+    Legacy Tile Sources can also be configured inline.
+    </p>
+</div>
+
+<div class="demoarea">
+    <div class="demoheading">
+        Example Inline Configuration for Legacy Tile Sources
+    </div>
+    <div id="inline-configuration" 
+         class="openseadragon"></div>
+</div>
+
+<script type="text/javascript">
+    // Example
+    OpenSeadragon({
+        id: "inline-configuration",
+        prefixUrl: "/openseadragon/images/",
+        showNavigator: true,
+        tileSources: {
+            type: 'legacy-image-pyramid',
+            levels:[{
+                url: '/example-images/rbc/rbc0001/2003/2003rosen1799/0001q.jpg',
+                height: 889,
+                width:  600
+            },{
+                url: '/example-images/rbc/rbc0001/2003/2003rosen1799/0001r.jpg',
+                height: 2201,
+                width:  1485
+            },{
+                url: '/example-images/rbc/rbc0001/2003/2003rosen1799/0001v.jpg',
+                height: 4402,
+                width:  2970
+            }]
+        }
+    });
+
+</script>
+
+<pre>
+OpenSeadragon({
+    ...
+    tileSources: {
+        type: 'legacy-image-pyramid',
+        levels:[{
+            url: '/example-images/rbc/rbc0001/2003/2003rosen1799/0001q.jpg',
+            height: 889,
+            width:  600
+        },{
+            url: '/example-images/rbc/rbc0001/2003/2003rosen1799/0001r.jpg',
+            height: 2201,
+            width:  1485
+        },{
+            url: '/example-images/rbc/rbc0001/2003/2003rosen1799/0001v.jpg',
+            height: 4402,
+            width:  2970
+            
+        }]
+    }
+    ...
+});
+</pre>
+
+<div class="description">
+    <h3>Example Image With a Different Aspect Ratio</h3>
+</div>
+
+<div class="demoarea">
+    <div class="demoheading">
+        One Final Example
+    </div>
+    <div id="aspect-ratio" 
+         class="openseadragon"></div>
+</div>
+
+<script type="text/javascript">
+    // Example
+    OpenSeadragon({
+        id: "aspect-ratio",
+        prefixUrl: "/openseadragon/images/",
+        showNavigator: true,
+        tileSources: {
+            type: 'legacy-image-pyramid',
+            levels:[{
+                url: '/example-images/highsmith/09250r.jpg',
+                height: 427,
+                width:  640
+            },{
+                url: '/example-images/highsmith/09250v.jpg',
+                height: 683,
+                width:  1024
+            }]
+        }
+    });
+
+</script>
+
+
+        <ul class="footer">
+            <li><a href='/#examples-and-features'
+                >Examples &amp; Features</a></li>
+            <li><a href='/#plugins'
+                >Plugins</a></li>
+             <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+            <li><a href='/#download'
+                >Download &amp; Install</a></li>
+            <li><a href='/docs/'
+                >API Documentation</a></li>
+            <li><a href='/#support'
+                >Support</a></li>
+            <li><a href='/#development'
+                >Development</a></li>
+            <li><a href='/license/'
+                >License</a></li>
+        </ul>
+    </div>
+
+    <script> // Google Analytics
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-40891712-1', 'github.io');
+        ga('send', 'pageview');
+    </script>
+
+</body>
+</html>

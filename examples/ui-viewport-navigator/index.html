@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+
+    <link rel="shortcut icon" type="image/png" href="/images/logo16.png">
+    <title>Viewport Navigator | OpenSeadragon</title>
+
+    <link rel='stylesheet' 
+          type='text/css'
+          media='screen'
+          href='/css/style.css'/>
+
+    <script src="/openseadragon/openseadragon.min.js"></script>
+</head>
+
+<body>
+    <a href="https://github.com/openseadragon/openseadragon"><img 
+       style="position: absolute; top: 0; right: 0; border: 0;" 
+       src="/images/forkme_right_darkblue_121621.png" 
+       alt="Fork me on GitHub" /></a>
+    <div id="container">
+        <div class="download">
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.zip">
+                <img border="0" width="90" src="/images/zip.png"></a>
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.tar.gz">
+                <img border="0" width="90" src="/images/tar.png"></a>
+        </div>
+        <img class="logo" src="/images/logo.png">
+        <h1>
+            <a href="/">OpenSeadragon</a><span class="version">
+                3.1.0
+            </span>
+            <span class="tagline">
+            </span>
+        </h1>
+
+        <div class='navigation'>
+            <ul>
+                <li><a href='/#examples-and-features'
+                    >Examples &amp; Features</a></li>
+                <li><a href='/#plugins'
+                    >Plugins</a></li>
+                <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+                <li><a href='/#download'
+                    >Download &amp; Install</a></li>
+                <li><a href='/docs/'
+                    >API Documentation</a></li>
+                <li><a href='/#support'
+                    >Support</a></li>
+                <li><a href='/#development'
+                    >Development</a></li>
+                <li><a href='/#license'
+                    >License</a></li>
+            </ul>
+        </div>
+
+        <h2>example: viewport navigator</h2>
+
+<p>
+    A viewport navigator shows the source image displayed
+    as a reference, with a highlighted area showing which portion of
+    the image the user is currently viewing.  The navigator reuses the
+    configured image sources so no additional image derivatives are
+    required.  Set the <code>showNavigator</code> to <code>true</code>
+    to activate the navigator feature.
+</p>
+
+<pre>
+    OpenSeadragon({
+        ...
+        showNavigator:  true,
+        ...
+    });
+
+</pre>
+
+<div class="description">
+    <h3>Navigator Example</h3>
+</div>
+
+<div class="demoarea">
+    <div class="demoheading">
+        Viewport Navigator
+    </div>
+    <div id="contentDiv" class="openseadragon"></div>
+</div>
+
+<script type="text/javascript">
+    OpenSeadragon({
+        id:            "contentDiv",
+        prefixUrl:     "/openseadragon/images/",
+        tileSources:   "/example-images/highsmith/highsmith.dzi",
+        showNavigator:  true
+    });
+</script>
+
+<!--==================================================================-->
+
+<div class="description">
+    <h3>Navigator Overlay Position</h3>
+    <p>By default the navigator is positioned in the upper right corner,
+        though it is possible to position it through configuration into any
+        corner.</p>
+
+</div>
+
+
+<div class="demoarea">
+    <div class="demoheading">
+        Viewport with Navigator in BOTTOM_LEFT
+    </div>
+    <div id="contentDiv3" class="openseadragon"></div>
+</div>
+
+<script type="text/javascript">
+    OpenSeadragon({
+        id:            "contentDiv3",
+        prefixUrl:     "/openseadragon/images/",
+        tileSources:   "/example-images/highsmith/highsmith.dzi",
+        showNavigator:  true,
+        navigatorPosition: 'BOTTOM_LEFT'
+    });
+</script>
+
+<p>
+The relevant configuration options are shown below. The
+<code>navigatorPosition</code> attribute identifies the corner
+into which the navigator should be overlayed.
+</p>
+
+<pre>
+    OpenSeadragon({
+        ...
+        showNavigator:  true,
+        navigatorPosition:   "BOTTOM_LEFT",
+        ...
+    });
+
+</pre>
+
+<!--==================================================================-->
+
+<div class="description">
+    <h3>Navigator Overlay Absolute Position</h3>
+    <p>In addition to the corners, the navigator can be positioned at a specific
+        size and location.</p>
+
+</div>
+
+
+<div class="demoarea">
+    <div class="demoheading">
+        Viewport with Navigator at an Absolute Location
+    </div>
+    <div id="contentDiv4" class="openseadragon"></div>
+</div>
+
+<script type="text/javascript">
+    OpenSeadragon({
+        id:            "contentDiv4",
+        prefixUrl:     "/openseadragon/images/",
+        tileSources:   "/example-images/highsmith/highsmith.dzi",
+        showNavigator:  true,
+        navigatorPosition: "ABSOLUTE",
+        navigatorTop:      "40px",
+        navigatorLeft:     "4px",
+        navigatorHeight:   "120px",
+        navigatorWidth:    "145px",
+    });
+</script>
+
+<p>
+The relevant configuration options are shown below. The
+<code>navigatorPosition</code> attribute is set to <code>"ABSOLUTE"</code>
+and the <code>navigatorTop</code>, <code>navigatorLeft</code>,
+<code>navigatorHeight</code>, and <code>navigatorWidth</code>
+attributes define the size and location of the navigator.
+</p>
+
+<pre>
+    OpenSeadragon({
+        ...
+        showNavigator:  true,
+        navigatorPosition: "ABSOLUTE",
+        navigatorTop:      "40px",
+        navigatorLeft:     "4px",
+        navigatorHeight:   "120px",
+        navigatorWidth:    "145px",
+        ...
+    });
+
+</pre>
+
+<!--==================================================================-->
+
+<div class="description">
+    <h3>Navigator Auto Fade</h3>
+    <p>By default, the navigator will auto fade after some timeout when the user stops interacting with the viewport. You can disable this behavior and make it visible persistently.</p>
+
+</div>
+
+
+<div class="demoarea">
+    <div class="demoheading">
+        Viewport with togglable Navigator
+    </div>
+    <button onclick="toggleNav()">Toggle Navigator</button>
+    <div id="contentDiv5" class="openseadragon"></div>
+</div>
+
+<script type="text/javascript">
+    var viewer_af = OpenSeadragon({
+        id:            "contentDiv5",
+        prefixUrl:     "/openseadragon/images/",
+        tileSources:   "/example-images/highsmith/highsmith.dzi",
+        showNavigator:  true,
+        navigatorAutoFade: false
+    });
+
+    var navShown = true;
+    function toggleNav () {
+        if (navShown)
+            viewer_af.navigator.element.style.display = "none";
+        else
+            viewer_af.navigator.element.style.display = "inline-block";
+        navShown = !navShown;
+    }
+</script>
+
+<p>
+The relevant configuration options are shown below.
+</p>
+
+<pre>
+    var viewer = OpenSeadragon({
+        ...
+        showNavigator:  true,
+        navigatorAutoFade:  false,
+        ...
+    });
+
+    // UI code for toggling navigator
+    // e.g.: button onclick handler
+    var navShown = true;
+    function toggleNav () {
+        if (navShown)
+            viewer.navigator.element.style.display = "none";
+        else
+            viewer.navigator.element.style.display = "inline-block";
+        navShown = !navShown;
+    }
+</pre>
+
+<!--==================================================================-->
+
+<div class="description">
+    <h3>Custom Navigator Location</h3>
+    <p>Instead of placing the navigator overtop of the main image, the navigator
+    may be placed elsewhere in the web page as illustrated in the example below.
+    The navigator can be placed in a jQuery UI dialog or other widget.</p>
+
+</div>
+
+
+<div class="demoarea2">
+    <div class="demoheading">
+        Viewport With Custom Navigator Location
+        <div id="navigatorDiv" class="openseadragon-small"></div>
+    </div>
+    <div id="contentDiv2" class="openseadragon"></div>
+</div>
+
+<script type="text/javascript">
+    OpenSeadragon({
+        id:            "contentDiv2",
+        navigatorId:   "navigatorDiv",
+        prefixUrl:     "/openseadragon/images/",
+        tileSources:   "/example-images/highsmith/highsmith.dzi",
+        showNavigator:  true
+    });
+</script>
+
+<p>
+The relevant configuration options are shown below. The
+<code>navigatorId</code> attribute identifies the div into
+which the navigator is placed.  When using this variation the navigator
+does not autofade.
+</p>
+
+<pre>
+    OpenSeadragon({
+        ...
+        showNavigator:  true,
+        navigatorId:   "navigatorDiv",
+        ...
+    });
+
+</pre>
+
+
+        <ul class="footer">
+            <li><a href='/#examples-and-features'
+                >Examples &amp; Features</a></li>
+            <li><a href='/#plugins'
+                >Plugins</a></li>
+             <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+            <li><a href='/#download'
+                >Download &amp; Install</a></li>
+            <li><a href='/docs/'
+                >API Documentation</a></li>
+            <li><a href='/#support'
+                >Support</a></li>
+            <li><a href='/#development'
+                >Development</a></li>
+            <li><a href='/license/'
+                >License</a></li>
+        </ul>
+    </div>
+
+    <script> // Google Analytics
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-40891712-1', 'github.io');
+        ga('send', 'pageview');
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+
+    <link rel="shortcut icon" type="image/png" href="/images/logo16.png">
+    <title>Keyboard Navigation | OpenSeadragon</title>
+
+    <link rel='stylesheet' 
+          type='text/css'
+          media='screen'
+          href='/css/style.css'/>
+
+    <script src="/openseadragon/openseadragon.min.js"></script>
+</head>
+
+<body>
+    <a href="https://github.com/openseadragon/openseadragon"><img 
+       style="position: absolute; top: 0; right: 0; border: 0;" 
+       src="/images/forkme_right_darkblue_121621.png" 
+       alt="Fork me on GitHub" /></a>
+    <div id="container">
+        <div class="download">
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.zip">
+                <img border="0" width="90" src="/images/zip.png"></a>
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.tar.gz">
+                <img border="0" width="90" src="/images/tar.png"></a>
+        </div>
+        <img class="logo" src="/images/logo.png">
+        <h1>
+            <a href="/">OpenSeadragon</a><span class="version">
+                3.1.0
+            </span>
+            <span class="tagline">
+            </span>
+        </h1>
+
+        <div class='navigation'>
+            <ul>
+                <li><a href='/#examples-and-features'
+                    >Examples &amp; Features</a></li>
+                <li><a href='/#plugins'
+                    >Plugins</a></li>
+                <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+                <li><a href='/#download'
+                    >Download &amp; Install</a></li>
+                <li><a href='/docs/'
+                    >API Documentation</a></li>
+                <li><a href='/#support'
+                    >Support</a></li>
+                <li><a href='/#development'
+                    >Development</a></li>
+                <li><a href='/#license'
+                    >License</a></li>
+            </ul>
+        </div>
+
+        <style type="text/css">
+
+       <!-- Changed the background color to make the focus highlighting
+            easier to see for this example -->
+      .openseadragon
+      {
+      background-color: lightgrey;
+      }
+
+    </style>
+
+<h2>example: keyboard navigation</h2>
+
+<p>The viewer supports keyboard operations to complement the drag and scroll
+(zoom) mouse interactions.</p>
+
+<p>
+  To interact via the keyboard, the focus must be on the viewer.
+  In this example the focus is set using
+  <code>document.getElementById('contentDiv').querySelector('.openseadragon-canvas').focus();</code>
+</p>
+
+<p>
+  You can use the following keys to navigate:
+</p>
+
+<ul>
+    <li><strong>[ w, up arrow ]</strong> - move viewport <strong>up</strong></li>
+    <li><strong>[ s, down arrow ]</strong> - move viewport <strong>down</strong></li>
+    <li><strong>[ a, left arrow ]</strong> - move viewport <strong>left</strong></li>
+    <li><strong>[ d, right arrow ]</strong> - move viewport <strong>right</strong></li>
+    <li><strong>[ 0 ]</strong> - zoom / move viewport <strong>home</strong></li>
+    <li><strong>[ - / _, shift+W, shift+up arrow ]</strong> - zoom viewport <strong>out</strong></li>
+    <li><strong>[ = / +, shift+S, shift+down arrow ]</strong> - zoom viewport <strong>in</strong></li>
+    <li><strong>[ r ]</strong> - rotate <strong>clockwise</strong></li>
+    <li><strong>[ R ]</strong> - rotate <strong>counterclockwise</strong></li>
+    <li><strong>[ f ]</strong> - flip <strong>horizontally</strong></li>
+    <li><strong>[ j ]</strong> - change to <strong>previous</strong> image source (sequence mode)</li>
+    <li><strong>[ k ]</strong> - change to <strong>next</strong> image source (sequence mode)</li>
+</ul>
+
+<div class="description">
+    <h3>Keyboard Navigation</h3>
+</div>
+
+<div class="demoarea">
+    <div class="demoheading">
+        Keyboard Navigation
+    </div>
+    <div id="contentDiv" class="openseadragon"></div>
+</div>
+
+<script type="text/javascript">
+    var viewer = OpenSeadragon({
+        id:            "contentDiv",
+        prefixUrl:     "/openseadragon/images/",
+        tileSources:   "/example-images/highsmith/highsmith.dzi"
+    });
+
+
+    viewer.addHandler('open', function (event) {
+        document.getElementById('contentDiv').querySelector('.openseadragon-canvas').focus();
+    });
+</script>
+
+
+        <ul class="footer">
+            <li><a href='/#examples-and-features'
+                >Examples &amp; Features</a></li>
+            <li><a href='/#plugins'
+                >Plugins</a></li>
+             <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+            <li><a href='/#download'
+                >Download &amp; Install</a></li>
+            <li><a href='/docs/'
+                >API Documentation</a></li>
+            <li><a href='/#support'
+                >Support</a></li>
+            <li><a href='/#development'
+                >Development</a></li>
+            <li><a href='/license/'
+                >License</a></li>
+        </ul>
+    </div>
+
+    <script> // Google Analytics
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-40891712-1', 'github.io');
+        ga('send', 'pageview');
+    </script>
+
+</body>
+</html>

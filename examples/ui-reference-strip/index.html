@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+
+    <link rel="shortcut icon" type="image/png" href="/images/logo16.png">
+    <title>Image Reference Strip | OpenSeadragon</title>
+
+    <link rel='stylesheet' 
+          type='text/css'
+          media='screen'
+          href='/css/style.css'/>
+
+    <script src="/openseadragon/openseadragon.min.js"></script>
+</head>
+
+<body>
+    <a href="https://github.com/openseadragon/openseadragon"><img 
+       style="position: absolute; top: 0; right: 0; border: 0;" 
+       src="/images/forkme_right_darkblue_121621.png" 
+       alt="Fork me on GitHub" /></a>
+    <div id="container">
+        <div class="download">
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.zip">
+                <img border="0" width="90" src="/images/zip.png"></a>
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.tar.gz">
+                <img border="0" width="90" src="/images/tar.png"></a>
+        </div>
+        <img class="logo" src="/images/logo.png">
+        <h1>
+            <a href="/">OpenSeadragon</a><span class="version">
+                3.1.0
+            </span>
+            <span class="tagline">
+            </span>
+        </h1>
+
+        <div class='navigation'>
+            <ul>
+                <li><a href='/#examples-and-features'
+                    >Examples &amp; Features</a></li>
+                <li><a href='/#plugins'
+                    >Plugins</a></li>
+                <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+                <li><a href='/#download'
+                    >Download &amp; Install</a></li>
+                <li><a href='/docs/'
+                    >API Documentation</a></li>
+                <li><a href='/#support'
+                    >Support</a></li>
+                <li><a href='/#development'
+                    >Development</a></li>
+                <li><a href='/#license'
+                    >License</a></li>
+            </ul>
+        </div>
+
+        <h2>Image Reference Strip</h2>
+
+<p>
+    An image reference strip allows the user to quickly preview and navigate a
+    sequence of images. This feature works only with <a href="/examples/tilesource-sequence/">sequence mode</a> enabled.
+</p>
+
+<div class="description">
+    <h3>Horizontal Scrolling Image Reference Strip</h3>
+</div>
+
+<div class="demoarea">
+    <div class="demoheading">
+        Horizontal Scrolling Image Reference Strip
+    </div>
+    <div id="contentDiv" 
+         class="openseadragon"></div>
+</div>
+
+<script type="text/javascript">
+
+    OpenSeadragon({
+        id:             "contentDiv",
+        prefixUrl:      "/openseadragon/images/",
+        sequenceMode: true,
+        showReferenceStrip:  true,
+        tileSources:    [{
+            type: 'legacy-image-pyramid',
+            levels:[{
+                url: '/example-images/rbc/rbc0001/2003/2003rosen1799/0001q.jpg',
+                height: 889,
+                width:  600
+            },{
+                url: '/example-images/rbc/rbc0001/2003/2003rosen1799/0001r.jpg',
+                height: 2201,
+                width:  1485
+            },{
+                url: '/example-images/rbc/rbc0001/2003/2003rosen1799/0001v.jpg',
+                height: 4402,
+                width:  2970
+                
+            }]
+        },{
+            type: 'legacy-image-pyramid',
+            levels:[{
+                url: '/example-images/rpbaasm/0900/0908/090801t.gif',
+                height: 150,
+                width:  116
+            },{
+                url: '/example-images/rpbaasm/0900/0908/090801q.jpg',
+                height: 400,
+                width:  310
+            },{
+                url: '/example-images/rpbaasm/0900/0908/090801r.jpg',
+                height: 860,
+                width:  667
+            },{
+                url: '/example-images/rpbaasm/0900/0908/090801v.jpg',
+                height: 1650,
+                width:  1279
+                
+            }],
+        },
+            "/example-images/highsmith/highsmith.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05954.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05955.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05956.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05957.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05958.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05959.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05960.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05961.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05962.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05963.dzi"
+        ]
+    });
+</script>
+
+<p>
+The relevant configuration options are shown below.
+</p>
+
+<pre>
+OpenSeadragon({
+    ...
+    sequenceMode: true,
+    showReferenceStrip: true,
+    ...
+});
+</pre>
+
+<div class="description">
+    <h3>Vertical Scrolling Image Reference Strip</h3>
+</div>
+
+<div class="demoarea">
+    <div class="demoheading">
+        Vertical Scrolling Image Reference Strip
+    </div>
+    <div id="toolbarDiv" class="toolbar">
+    </div>
+    <div id="contentDiv2" class="openseadragon"></div>
+</div>
+
+<script type="text/javascript">
+    OpenSeadragon({
+        id:            "contentDiv2",
+        prefixUrl:     "/openseadragon/images/",
+        toolbar:       "toolbarDiv",
+        springStiffness:        10,
+        sequenceMode:           true,
+        showReferenceStrip:     true,
+        autoHideControls:       false,
+        referenceStripScroll:   'vertical',
+        tileSources:    [{
+            type: 'legacy-image-pyramid',
+            levels:[{
+                url: '/example-images/rbc/rbc0001/2003/2003rosen1799/0001q.jpg',
+                height: 889,
+                width:  600
+            },{
+                url: '/example-images/rbc/rbc0001/2003/2003rosen1799/0001r.jpg',
+                height: 2201,
+                width:  1485
+            },{
+                url: '/example-images/rbc/rbc0001/2003/2003rosen1799/0001v.jpg',
+                height: 4402,
+                width:  2970
+                
+            }]
+        },{
+            type: 'legacy-image-pyramid',
+            levels:[{
+                url: '/example-images/rpbaasm/0900/0908/090801t.gif',
+                height: 150,
+                width:  116
+            },{
+                url: '/example-images/rpbaasm/0900/0908/090801q.jpg',
+                height: 400,
+                width:  310
+            },{
+                url: '/example-images/rpbaasm/0900/0908/090801r.jpg',
+                height: 860,
+                width:  667
+            },{
+                url: '/example-images/rpbaasm/0900/0908/090801v.jpg',
+                height: 1650,
+                width:  1279
+                
+            }],
+        },
+            "/example-images/highsmith/highsmith.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05954.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05955.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05956.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05957.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05958.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05959.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05960.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05961.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05962.dzi",
+            "/example-images/pnp/ppmsca/05900/05954/05963.dzi"
+        ]
+    });
+</script>
+
+<p>
+The relevant configuration options are shown below.
+</p>
+
+<pre>
+OpenSeadragon({
+    ...
+    sequenceMode: true,    
+    showReferenceStrip: true,
+    referenceStripScroll: 'vertical',
+    ...
+});
+</pre>
+
+
+        <ul class="footer">
+            <li><a href='/#examples-and-features'
+                >Examples &amp; Features</a></li>
+            <li><a href='/#plugins'
+                >Plugins</a></li>
+             <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+            <li><a href='/#download'
+                >Download &amp; Install</a></li>
+            <li><a href='/docs/'
+                >API Documentation</a></li>
+            <li><a href='/#support'
+                >Support</a></li>
+            <li><a href='/#development'
+                >Development</a></li>
+            <li><a href='/license/'
+                >License</a></li>
+        </ul>
+    </div>
+
+    <script> // Google Analytics
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-40891712-1', 'github.io');
+        ga('send', 'pageview');
+    </script>
+
+</body>
+</html>

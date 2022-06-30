@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+
+    <link rel="shortcut icon" type="image/png" href="/images/logo16.png">
+    <title>OpenSeadragon in the Wild | OpenSeadragon</title>
+
+    <link rel='stylesheet' 
+          type='text/css'
+          media='screen'
+          href='/css/style.css'/>
+
+    <script src="/openseadragon/openseadragon.min.js"></script>
+</head>
+
+<body>
+    <a href="https://github.com/openseadragon/openseadragon"><img 
+       style="position: absolute; top: 0; right: 0; border: 0;" 
+       src="/images/forkme_right_darkblue_121621.png" 
+       alt="Fork me on GitHub" /></a>
+    <div id="container">
+        <div class="download">
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.zip">
+                <img border="0" width="90" src="/images/zip.png"></a>
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.tar.gz">
+                <img border="0" width="90" src="/images/tar.png"></a>
+        </div>
+        <img class="logo" src="/images/logo.png">
+        <h1>
+            <a href="/">OpenSeadragon</a><span class="version">
+                3.1.0
+            </span>
+            <span class="tagline">
+            </span>
+        </h1>
+
+        <div class='navigation'>
+            <ul>
+                <li><a href='/#examples-and-features'
+                    >Examples &amp; Features</a></li>
+                <li><a href='/#plugins'
+                    >Plugins</a></li>
+                <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+                <li><a href='/#download'
+                    >Download &amp; Install</a></li>
+                <li><a href='/docs/'
+                    >API Documentation</a></li>
+                <li><a href='/#support'
+                    >Support</a></li>
+                <li><a href='/#development'
+                    >Development</a></li>
+                <li><a href='/#license'
+                    >License</a></li>
+            </ul>
+        </div>
+
+        <h2>OpenSeadragon in the Wild</h2>
+<h4>Categories</h4>
+    <div style="display:flex; justify-content: center; align-items: flex-start;">
+    <ul style="">
+        <li><a href="#art">Art/Photograpy</a></li>
+        <li><a href="#gaming">Gaming</a></li>
+        <li><a href="#history">History</a></li>
+        <li><a href="#industrial">Industrial/Professional</a><li>
+        <li><a href="#mapping">Mapping</a></li>
+    </ul>
+    <ul>
+        <li><a href="#science">Scientific</a></li>
+        <li><a href="#storytelling">Storytelling/Media</a></li>
+        <li><a href="#tools">Tools</a></li>
+        <li><a href="#installations">Installations</a></li>
+    </ul>
+</div>
+<h4><a name="art"></a>Art/Photography</h4>
+<ul class="square-list">
+    <li><a href="http://alexbartl.de/panorama.html">Alexander Bartl: Panoramas</a></li>
+    <li>
+        <a href="https://www.artic.edu/">Art Institute of Chicago</a>
+        <ul>
+            <li>e.g. <a href="https://www.artic.edu/artworks/61428/cow-s-skull-with-calico-roses">Cow's Skull with Calico Roses, Georgia O'Keeffe, 1931 </a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="https://www.artsy.net/">Artsy</a>
+        <ul>
+            <li>e.g. <a href="https://www.artsy.net/artwork/saint-clair-cemin-greece/zoom">Greece, Saint Clair Cemin, 2012</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="http://pinacotecabrera.org/">Brera Pinacoteca</a>
+        <ul>
+            <li>e.g. <a href="http://pinacotecabrera.org/collezione-online/opere/madonna-col-bambino-madonna-della-mela/">Madonna con il Bambino (Madonna della mela)</a></li>
+        </ul>
+    </li>
+    <li><a href="http://chrisjordan.com/gallery/rtn/">Chris Jordan: Running the Numbers</a></li>
+    <li><a href="http://digitiler.com/">Digitiler</li>
+    <li>
+        <a href="http://feinerarts.com/feiner-arts---deep-zoom.html">Feiner Arts</a>
+        <ul>
+            <li>e.g. <a href="http://zoom.feinerarts.com/earth_city/">Earth City</a></li>
+        </ul>
+    </li>
+    <li><a href="http://www.ireland.com/features/game-of-thrones-tapestry/">Game of Thrones Tapestry</a></li>
+    <li>
+         <a href="http://boschproject.org/book_links.html">Hieronymus Bosch, Painter and Draughtsman: Catalogue Raisonné</a>
+         <ul>
+             <li>e.g. <a href="http://boschproject.org/view.html?mode=sync&layout=grid&r=0.4341,0.2773,0.2500,0.4361&pointer=0.5,0.5&i=89MCPVIS,89MCPIRP,89IRREFL">Featured link: L08: p. 488, n. 31</a></li>
+         </ul>
+    </li>
+    <li><a href="http://www.in2white.com/">In2White</a></li>
+    <li>
+        <a href="https://artmuseum.indiana.edu/">Indiana University Art Museum</a>
+        <ul>
+            <li>e.g. <a href="http://www.iub.edu/~iuam/online_modules/barkcloth/main/">Fiji Islands Barkcloth</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="http://collection.imamuseum.org/">Indianapolis Museum of Art</a>
+        <ul>
+            <li>e.g. <a href="http://collection.imamuseum.org/artwork/80112/">Sunlight, Frank W. Benson (American, 1862-1951)</a></li>
+        </ul>
+    </li>
+    <li><a href="https://javipsantos.com/">Javier P. Santos: GigaFotos</a></li>
+<!--    <li><a href="https://www.karinatwiss.com">Karina Twiss photography</a></li>-->
+    <li><a href="https://legionofhonor.famsf.org/interactives/luminous-worlds/#/list">Luminous Worlds: British Works on Paper, 1760-1900</a></li>
+<!--    <li><a href="http://maxotics.com/2016/08/01/4x5-digital-back-part-iv/">Maxotics: test images for “DigiTiler” system for 4x5 format cameras</a></li>-->
+
+    <li>
+        <a href="https://www.theleidencollection.com/collection/">The Leiden Collection</a>
+        <ul>
+            <li>e.g. <a href="https://www.theleidencollection.com/leiden-viewer/david-and-uriah/">David and Uriah, Pieter Lastman (Dutch, 1583 – 1633)</a></li>
+        </ul>
+    </li>
+    <li><a href="https://www.maggie-shaw.co.uk/" title="Paintings and embroidery by artist Maggie Shaw">Maggie Shaw - Embroidery and paintings</a></li>
+    <li><a href="https://majesty-of-36-views.glitch.me/">The Majesty of <em>The Thirty-Six Views of Mt. Fuji</em></a></li>
+    <li>
+        <a href="http://samling.nasjonalmuseet.no/en/">Nasjonalmuseet, Norway</a>
+        <ul>
+            <li>e.g. <a href="http://samling.nasjonalmuseet.no/en/object/NG.M.00467">Bridal Procession on the Hardangerfjord, Hans Gude &amp; Adolph Tidemand</a></li>
+        </ul>
+    </li>
+<!--    <li>
+        <a href="http://www.nationalmuseum.se/sv/English-startpage/">National Museum, Sweden</a>
+        <ul>
+            <li>e.g. <a href="http://collection.nationalmuseum.se/eMuseumPlus?service=ExternalInterface&module=collection&objectId=22802&viewType=detailView#.V_-thaqtNsg.twitter">"Portrait of a Lady," Alexander Roslin (Swedish), 1753</a></li>
+        </ul>
+    </li>-->
+    <li>
+        <a href="http://www.owlstand.com/">Owlstand</a>
+        <ul>
+            <li>e.g. <a href="http://www.owlstand.com/exhibition/room/9e83a1f3-2b6c-4ac2-bd1d-36b03871d0b4">7.83 Hz: Artwork by Skip Noah</a></li>
+        </ul>
+    </li>
+    <!-- hidden until Adrian supplies corrected link
+    <li>
+        <a href="http://www.186282mps.com/">Photography by Adrian Mendoza</a>
+        <ul>
+            <li>e.g. <a href="http://www.186282mps.com/the-muselar.html">A Muselar</a></li>
+        </ul>
+    </li>
+  -->
+    <li>
+        <a href="http://rosphoto.org/collection-en/virtual-museum/">ROSPHOTO Virtual Museum</a>
+        <ul>
+            <li>e.g. <a href="http://rosphoto.org/interactive-museum/dmitrii-donskoi/app/ship/index.html">The Voyage on the Сruiser Dmitrii Donskoi</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="https://www.sfmoma.org/">San Francisco Museum of Modern Art</a>
+        <ul>
+            <li>e.g. <a href="https://www.sfmoma.org/artwork/98.27">Flatland River, Wayne Thiebaud, 1997 </a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="https://www.webwallwhispers.net/">Fondazione Spinola-Banna: Web Wall Whispers</a>
+    </li>
+</ul>
+
+<h4><a name="gaming"></a>Gaming</h4>
+<ul class="square-list">
+    <li>Dungeons and Dragons Forgotten Realms Map, <a href="https://dndcombat.com/faerun">Faerun</a></li>
+    <li><a href="http://embers.nicejacket.cc/known-eilarun.html">The Embers of Eilar&ucirc;n</a></li>
+    <li><a href="http://map.projectzomboid.com/">Project Zomboid Map Project</a></li>
+</ul>
+
+<h4><a name="history"></a>History</h4>
+<ul class="square-list">
+    <li><a href="http://arkyves.org/view/essay0014/">Arkyves</a></li>
+    <li>
+        <a href="http://beta.biblissima.fr/en">Biblissima portal (medieval manuscripts and early printed books)</a>
+        <ul>
+            <li>e.g. an illumination from a manuscript <a href="http://beta.biblissima.fr/en/ark:/43093/ifdata68b8958d6efb2c5b0d9e670d185dcd38a01b1f57">Égypte: Alexandrie (Paris, BnF, Latin 4802 f.136)</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="https://benihassan.com/">Beni Hassan @ Macquarie University</a>
+        <ul>
+            <li>e.g. <a href="https://benihassan.com/dictionary/Kanawati-Evans-BH1-Pl-07a-Beni-Hassan-Khnumhotep-II-Tomb-3-Chapel-Inscription-East-wall-Lower-section-Wall/">(auto)Biography of Khnumhotep II</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="http://deepzoomchattanooga.com/">Deep Zoom Chattanooga</a>
+        <ul>
+            <li>e.g. <a href="http://deepzoomchattanooga.com/1907_market.php">Market Street, 1907</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="http://www2.statsbiblioteket.dk/mediestream/avis">Denmark State and University Library: Mediestream</a>
+        <ul>
+            <li>e.g. <a href="http://www2.statsbiblioteket.dk/mediestream/avis/record/doms_aviser_page%3Auuid%3A66780f88-1fa8-4f5a-9665-eea431bb3b7e/query/stockholm">Bornholms Tidende, August 17, 1910</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="http://dp.la/">Digital Public Library of America</a>
+        <ul>
+            <li>e.g. <a href="http://dp.la/exhibitions/exhibits/show/american-aviatrixes/daredevils">Women with Wings: American Aviatrixes, 1920s</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="https://repository.dri.ie/">Digital Repository of Ireland</a>
+        <ul>
+            <li>e.g. <a href="https://repository.dri.ie/catalog?f%5Bfile_type_display_sim%5D%5B%5D=image&f%5Broot_collection_id_sim%5D%5B%5D=9593x130k&mode=objects&search_field=all_fields&utf8=%E2%9C%93">"The Inspiring Ireland Project" from the National Museum of Ireland</a> includes a <a href="https://repository.dri.ie/catalog/5999n7273">Hair Hurling Ball</a></li>
+        </ul>
+    </li>
+<!--    <li>
+        <a href="https://familysearch.org/">FamilySearch</a>
+        <ul>
+            <li>e.g. <a href="https://familysearch.org/pal:/MM9.3.1/TH-1942-27779-1718-28?cc=2000219">Page from United States Census, 1940</a></li>
+        </ul>
+    </li> hidden because example is behind login -->
+    <li>
+        <a href="http://gallica.bnf.fr/accueil/?mode=desktop">Gallica from Bibliothèque nationale de France</a>
+        <ul>
+            <li>e.g. <a href="http://gallica.bnf.fr/ark:/12148/btv1b520004510/f241.item.zoom">Horae ad usum Parisiensem</a></li>
+        </ul>
+    </li>
+    <li><a href="http://imprimerie-union.org/annees-russes/chalit/galerie-chalit">IMPRIMERIE UNION: Galerie Chalit</a></li>
+    <li>
+        <a href="https://dss.lafayette.edu/">Lafayette College: Digital Scholarship Services</a>
+        <ul>
+            <li>e.g. <a href="http://digital.lafayette.edu/collections/eastasia/pa-koshitsu/ia0006">Numazu Goy&omacr;tei and Inner Palace Throne, 1925</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="http://www.loc.gov/manuscripts">Library of Congress: Manuscripts</a>
+        <ul>
+            <li>e.g. <a href="http://memory.loc.gov/cgi-bin/ampage?collId=rbcmil&fileName=scrp4002401/rbcmilscrp4002401.db&recNum=0&itemLink=h?ammem/rbcmillerbib">Arthur P. Rose, Geneva Mayor, to Anne Fitzhugh Miller</a> from the Miller NAWSA Suffrage Scrapbooks, 1897-1911</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="http://www.loc.gov/maps">Library of Congress: Maps</a>
+        <ul>
+            <li>e.g. <a href="http://www.loc.gov/resource/g3200.ct001393/">NOVA, ET INTEGRA VNIVERSI ORBIS DESCRIPTIO, 1531</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="http://chroniclingamerica.loc.gov/">Library of Congress: Newspapers</a>
+        <ul>
+            <li>e.g. <a href="http://chroniclingamerica.loc.gov/lccn/sn83045433/1915-01-10/ed-1/seq-48/">The Washington Herald, January 10, 1915, Pg.48</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="http://trove.nla.gov.au/">National Library of Australia: Trove</a>
+        <ul>
+            <li>e.g. <a href="http://nla.gov.au/nla.obj-41292850">Posters relating to the Australian federal elections campaigns</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="http://www.nypl.org/blog/2016/01/05/share-public-domain-collections">New York Public Library</a>
+        <ul>
+            <li>e.g. <a href="http://digitalcollections.nypl.org/items/8c108420-d56d-0131-4a50-58d385a7bbd0">Lighthouse, 1935-1943</a></li>
+        </ul>
+    </li>
+    <li><a href="http://mcgrawect.princeton.edu/seadragon/">Princeton University Digital Library at The McGraw Center</a></li>
+        <ul>
+            <li>e.g. <a href="http://commons.princeton.edu/soviet/">Playing Soviet</a>'s <a href="http://pudl.princeton.edu/viewer.php?obj=n870zt57n#page/6/mode/2up">80,000 Horses</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="http://www.qdl.qa/">Qatar Digital Library</a>
+        <ul>
+            <li>e.g. <a href="http://www.qdl.qa/en/archive/81055/vdc_100023416125.0x000002">Persian map of Bushire before bombardment by the British in 1856</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="http://www.rare-atlases.com/">Rare Atlases</a>
+        <ul>
+            <li>e.g. <a href="http://www.rare-atlases.com/atlases/18th-century-atlases/1718-atlas-of-friesland-by-schotanus?atlas=1718-atlas-of-friesland-by-schotanus&map=1718_schotanus_friesland_050&view=zoomall&atlasid=11&tmpl=component">Atlas of Friesland by Schotanus, 1718</a></li>
+        </ul>
+    </li>
+    <li><a href="http://infoforest.vis.uky.edu">The St. Chad Gospels Registered Image Viewer</a></li>
+    <li>
+        <a href="https://wellcomecollection.org/works">Wellcome Collection</a>
+        <ul>
+            <li>e.g. <a href="https://wellcomecollection.org/works/a3gvp92j">A Chinese boatwoman by John Thomson</a></li>
+            <li>e.g. <a href="https://wellcomecollection.org/works/nvexu4hd">MS Panjabi 255, folio 186 verso</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="http://www.wdl.org/">World Digital Library</a>
+        <ul>
+            <li>e.g. <a href="http://www.wdl.org/en/item/9468/view/1/1/">Delaware River during the Severe Winter of 1856</a></li>
+            <li>e.g. <a href="https://www.wdl.org/en/item/211/view/1/60/">The Amazon and Madeira Rivers: Sketches and Descriptions, 1875, Pg.60</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="https://digital.library.yorku.ca/">York University Digital Library</a>
+        <ul>
+            <li>e.g. <a href="https://digital.library.yorku.ca/yul-100447/cne-sports">Waterskiing in a pyramid formation, 1970</a></li>
+        </ul>
+    </li>
+</ul>
+
+<h4><a name="industrial"></a>Industrial/Professional</h4>
+<ul class="square-list">
+  <li><a href="http://200k.accaglobal.com/wall">ACCA's "Wall of Members"</a></li>
+  <li><a href="https://clarksullivan.com/cams/ritz">Clark/Sullivan Construction</a></li>
+  <li><a href="http://www.sitecenters.com/">SITE Centers Corp.</a>
+    <ul>
+      <li>e.g. <a href="https://www.sitecenters.com/properties/leaseplan/winter-garden-village">Winter Garden Village</a></li>
+    </ul>
+  </li>
+  <li><a href="https://www.truedesign.it/en/lifespaces">True Design Life Spaces</a>
+    <ul>
+      <li>e.g. <a href="https://www.truedesign.it/en/lifespaces/working_space-13.html">Working Spaces</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h4><a name="mapping"></a>Mapping</h4>
+<ul class="square-list">
+    <li><a href="https://lib.msu.edu/branches/map/scannedmaps/intro/">Michigan State University Map Library</a>
+        <ul>
+            <li>e.g. <a href="https://lib.msu.edu/branches/map/MiJPEGS/1822-michigan/">Michigan Territory, 1822</a></li>
+        </ul>
+    </li>
+    <li><a href="http://www.idansoft.com/OblivisionJS/menu.aspx">Oblivision</a></li>
+    <li>
+        <a href="https://www.romaierioggi.it/category/mappe/">Roma Ieri Oggi</a>
+        <ul>
+            <li>e.g. <a href="http://www.romaierioggi.it/nuova-pianta-di-roma-moderna-monaldini-1843/">Nuova Pianta di Roma Moderna – Monaldini 1843</a></li>
+        </ul>
+    </li>
+    <li><a href="http://siie.tamaulipas.gob.mx/sistemas/Mapas.aspx?IdC=4">Secretar&iacute;a de Educaci&oacute;n de Tamaulipas: Maps</a></li>
+    <li><a href="http://www.skyimd.com/">SkyIMD</a>
+        <ul>
+          <li> e.g. <a href="http://www.skyimd.com/hog-island-tomales-bay-high-resolution-aerial-zoom/">Hog Island, Tomales Bay</a></li>
+        </ul>
+    </li>
+    <li><a href="https://urbanomonte-4db4a.web.app/">Urbano Monte's 1587 World Map</a></li>
+</ul>
+<h4><a name="science"></a>Scientific</h4>
+<ul class="square-list">
+    <li><a href="http://www.allencell.org/deep-cell-zoom.html">Allen Cell Explorer</a></li>
+    <li><a href="https://www.doc.ic.ac.uk/~dmcginn/adjmat.html">Bitcoin Blockchain Explorer</a></li>
+    <li><a href="http://cancer.digitalslidearchive.net/">Cancer Digital Slide Archive</a></li>
+    <li>
+        <a href="https://covid19pathology.nih.gov/">COVID Digital Pathology Repository</a>
+        <ul>
+            <li>Instructions: click 'View the DPR', enter an email, login with the pre-filled credentials, navigate thru the folders, and open any image.</li>
+        </ul>
+    </li>
+    <li>
+      <a href="https://github.com/dmattek/dzPlateViewer">dzPlateViewer for microscopy images</a>
+      <ul>
+        <li>e.g. <a href="http://macdobry.net/deepzoomdemo/demoscreen/XXXXX/YYYYY/index.html">images from a drug screen of anti-cancer compounds</a></li>
+      </ul>
+    </li>
+    <li>
+        <a href="http://feistyphoton.org/">Feisty Photon - Astrophotography by Darryn Lavery</a>
+        <ul>
+            <li>e.g. <a href="http://feistyphoton.org/project/carinatour/">A Tour Around the Carina Nebula</a></li>
+            <li>(<a href="https://github.com/DarrynLavery/astro-image-viewer/">source code</a>)</li>
+        </ul>
+    </li>
+    <li>
+        <a href="https://fitsliberator.bitpointer.co">FITS Liberator v4 - Development by Juan Fajardo & David Zambrano Lizarazo</a>
+        <ul>
+            <li><a href="https://fitsliberator.bitpointer.co/fl4/">Tour FL4</a></li>
+            <li><a href="https://noirlab.edu/public/announcements/ann21013/">NOIRlab announcement</a></li>
+            <li><a href="https://esahubble.org/announcements/ann2104/">ESA/Hubble announcement</a></li>
+            <li><a href="https://www.youtube.com/watch?v=ulrOvUeySDw&list=PLMIQP7eArAtbtiWk_oGV4gbcsbofTfoi9&index=2">FITS Liberator Basics instruction video by Robert Hurt</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="https://gp3.mpg.de/">GenePaint</a>
+        <ul>
+            <li><a href="https://gp3.mpg.de/viewer/setInfo/MH454">Pax6 expression in mouse embryo</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="https://greatbasinforensics.com/">Great Basin Forensics :: Remote Forensic Imaging</a>
+        <ul>
+            <li><a href="https://free.greatbasinforensics.com/Submission/View/5">Demo: CDN $10 with different light sources @ 2000 DPI</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="http://www.proteinatlas.org/">The Human Protein Atlas</a>
+        <ul>
+            <li>e.g. <a href="http://www.proteinatlas.org/ENSG00000213463-SYNJ2BP/tissue/mouse+brain">Mouse brain tissue</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="http://microdraw.pasteur.fr/">MicroDraw: Collaborative Annotation</a>
+        <ul>
+            <li>e.g. <a href="http://microdraw.pasteur.fr/data?source=/bigbrain/bigbrain.json">BigBrain human brain slice</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="http://www.mindat.org/">Mindat: Mineralogy Database</a>
+        <ul>
+            <li>e.g. <a href="http://www.mindat.org/photo-724204.html">Gold: Au</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="https://isg.nist.gov/deepzoomweb/">NIST Computational Science in Metrology</a>
+        <ul>
+            <li>e.g. <a href="https://isg.nist.gov/deepzoomweb/view/image/moche">Material Science: Moche</a></li>
+        </ul>
+    </li>
+    <li>
+        <b>RationAI</b> visualization tool for high-resolution, multi-layered data by
+         <a href="https://www.fi.muni.cz/research/laboratories/rationai.html.en">RationAI research group at Masaryk University</a>:
+         explainable artifical intelligence research focused on cancer detection.
+        <ul>
+            <li>Video <a href="https://www.youtube.com/watch?v=AqV9Tj6heEI">5-MICC: Neural Networks and Cancer Detection in Tissue Scans</a></li>
+            <li><a href="https://rationai-vis.ics.muni.cz/visualization-demo/">Interactive showcase </a></li>
+        </ul>
+    </li>
+
+     <li><a href="http://rosphoto.org/multispectral/index-en.html">ROSPHOTO Spectrozonal photography usage for attribution and analysis in archival photography</a></li>
+     <li><a href="http://heatmaps.nimblex.net/">SDR Heatmaps (radio frequencies)</a>
+         <ul>
+             <li>e.g. <a href="http://heatmaps.nimblex.net/tiles/400-500-Bucharest-Feb-2017.html">400 MHz - 500 MHz</a></li>
+         </ul>
+     </li>
+    <li><a href="http://www.zoosphere.net/">ZooSphere</a></li>
+</ul>
+<h4><a name="storytelling"></a>Storytelling/Media</h4>
+<ul class="square-list">
+    <li><a href="http://labs.statsbiblioteket.dk/zoom/">A million pages in one</a></li>
+    <li><a href="http://www.bbc.com/news/world-us-canada-22661624">BBC: Oklahoma tornado, survivors' tales from eye of the storm</a></li>
+    <li>
+        <a href="http://epaper.e-dicola.net/epaper">E-Dicola Magazine Viewer</a>
+        <ul>
+            <li>e.g. <a href="http://epaper.e-dicola.net/en/magazines/1676-media-key-367#page=1">Media Key Magazine, No. 367</a></li>
+        </ul>
+    </li>
+
+    <li><a href="http://ignaciobello.com.ar/infografia_21_personajes_que_mas_progresaron.html">Ignacio Bello's "21 Personajes Que M&aacute;s Progresaron"</a></li>
+    <li><a href="http://www.monticello.org/mulberry-row/places/phase-i">Landscape of Slavery: Mulberry Row at Monticello</a></li>
+    <li><a href="http://labs.statsbiblioteket.dk/juxta/lunch/">Lunch</a></li>
+    <li><a href="https://mapofmetal.com/">Map of Metal</a></li>
+    <li><a href="http://beehivecollective.org/posterViewer/?poster=mr">Mesoam&eacute;rica Resiste, Beehive Design Collective</a></li>
+    <li><a href="https://www.nytimes.com/interactive/2017/01/20/us/politics/trump-inauguration-photo-zoomer.html">New York Times' Who's Who of President Trump's Inauguration</a></li>
+    <li><a href="http://ruebot.net/">Nick Ruest's Visualizations</a>
+      <ul>
+        <li>e.g. <a href="http://ruebot.net/visualizations/wm/">6,104,790 Women's March Images</a></li>
+      </ul>
+    </li>
+    <li><a href="http://www.madrona.com/seattle-tech-universe-poster/">Seattle Tech Universe</a></li>
+    <li><a href="http://amhistory.si.edu/starspangledbanner/interactive-flag-html5/">The Star-Spangled Banner, Smithsonian</a></li>
+    <li><a href="http://twittercensus.se/graph2014/graphwalk14.php">Swedish Twitter Census, 2014</a></li>
+<!--    <li><a href="http://www.vam.ac.uk/content/articles/i/exhibition-road-drawing-scroll/">Victoria and Albert Museum: Exhibition Road drawing scroll</a> (<a href="http://www.vam.ac.uk/blog/digital-media/building-the-deepzoom">more info</a>)</li>  tilesource doesn't load -->
+    <li><a href="http://rosphoto.org/interactive-museum/dmitrii-donskoi/app/ship/index-en.html">The Voyage on the Cruiser Dmitrii Donskoi, ROSPHOTO</a> (<a href="http://rosphoto.org/collection-en/virtual-museum/the-voyage-on-the-cruiser-dmitrii-donskoi/">more info</a>)</li>
+<!-- offline:    <li><a href="http://dump.ventero.de/xkcd1110/open.html">xkcd #1110 remixed with OpenSeadragon</a></li> -->
+</ul>
+
+<h4><a name="tools"></a>Tools</h4>
+<ul class="square-list">
+    <li><a href="http://annotorious.github.io/demos/openseadragon-preview.html">Annotorious</a></li>
+    <li><a href="https://cirrocumulus.readthedocs.io/">Cirrocumulus for large-scale single-cell genomics data</a></li>
+    <li><a href="https://github.com/tokee/juxta">Juxta</a> (<a href="http://labs.statsbiblioteket.dk/juxta/subject3795/">Demo</a>)</li>
+    <li><a href="https://micr.io">Micrio</a> (<a href="https://micr.io/iiif/image-api">Demo</a>)</li>
+    <li><a href="http://projectmirador.org">Mirador</a> (<a href="http://projectmirador.org/demo/">demo</a> - <a href="https://github.com/IIIF/mirador">GitHub</a>)</li>
+    <li><a href="http://mosaically.com/">Mosaically</a></li>
+    <li><a href="http://openslide.org/">OpenSlide</a> (<a href="http://openslide.org/demo/">demo</a>)</li>
+<!--    <li><a href="https://photosynth.net/preview/">Photosynth 3rd Generation</a></li> link does not resolve-->
+    <li><a href="https://github.com/LibraryOfCongress/wdl-viewer">WDL Viewer</a></li>
+    <li><a href="http://player.digirati.co.uk/">Wellcome Player</a></li>
+    <li><a href="http://zoomable.ca/">Zoomable</a></li>
+</ul>
+
+<h4><a name="installations"></a>Installations</h4>
+<ul class="square-list">
+    <li>Jewel City Exhibition, 2015, <a href="http://deyoung.famsf.org/">de Young Museum</a></li>
+    <li>Art &amp; Curiosity Cabinets Exhibition, 2015, <a href="https://thewadsworth.org/">Wadsworth Atheneum: Museum of Art</a></li>
+</ul>
+
+
+        <ul class="footer">
+            <li><a href='/#examples-and-features'
+                >Examples &amp; Features</a></li>
+            <li><a href='/#plugins'
+                >Plugins</a></li>
+             <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+            <li><a href='/#download'
+                >Download &amp; Install</a></li>
+            <li><a href='/docs/'
+                >API Documentation</a></li>
+            <li><a href='/#support'
+                >Support</a></li>
+            <li><a href='/#development'
+                >Development</a></li>
+            <li><a href='/license/'
+                >License</a></li>
+        </ul>
+    </div>
+
+    <script> // Google Analytics
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-40891712-1', 'github.io');
+        ga('send', 'pageview');
+    </script>
+
+</body>
+</html>

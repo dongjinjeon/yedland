@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+
+    <link rel="shortcut icon" type="image/png" href="/images/logo16.png">
+    <title>IIIF Tile Source | OpenSeadragon</title>
+
+    <link rel='stylesheet' 
+          type='text/css'
+          media='screen'
+          href='/css/style.css'/>
+
+    <script src="/openseadragon/openseadragon.min.js"></script>
+</head>
+
+<body>
+    <a href="https://github.com/openseadragon/openseadragon"><img 
+       style="position: absolute; top: 0; right: 0; border: 0;" 
+       src="/images/forkme_right_darkblue_121621.png" 
+       alt="Fork me on GitHub" /></a>
+    <div id="container">
+        <div class="download">
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.zip">
+                <img border="0" width="90" src="/images/zip.png"></a>
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.tar.gz">
+                <img border="0" width="90" src="/images/tar.png"></a>
+        </div>
+        <img class="logo" src="/images/logo.png">
+        <h1>
+            <a href="/">OpenSeadragon</a><span class="version">
+                3.1.0
+            </span>
+            <span class="tagline">
+            </span>
+        </h1>
+
+        <div class='navigation'>
+            <ul>
+                <li><a href='/#examples-and-features'
+                    >Examples &amp; Features</a></li>
+                <li><a href='/#plugins'
+                    >Plugins</a></li>
+                <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+                <li><a href='/#download'
+                    >Download &amp; Install</a></li>
+                <li><a href='/docs/'
+                    >API Documentation</a></li>
+                <li><a href='/#support'
+                    >Support</a></li>
+                <li><a href='/#development'
+                    >Development</a></li>
+                <li><a href='/#license'
+                    >License</a></li>
+            </ul>
+        </div>
+
+        <h2>
+    example: iiif tile support
+</h2>
+<p>
+    The latest version of the International Image Interoperability Framework: Image API is formally described
+    <a href='http://iiif.io/api/image/'>here</a>.
+</p>
+<p>
+    The IIIF API specifies a web service that returns an image in response to a standard HTTP or HTTPS request.
+    The URL can specify the region, size, rotation, quality, and format of the requested image. A
+    URL can also be constructed to request basic technical information about the image to support client
+    applications.  The IIIF API was designed to facilitate systematic reuse of image resources in digital
+    image repositories maintained by cultural heritage organizations. The API could be adopted by any image
+    repository or service, and can be used to retrieve static images in response to a properly constructed URL.
+</p>
+<p>
+    OpenSeadragon has added support for IIIF thanks to several of the
+    authors of its specification,
+    as well as the <a href='https://gist.github.com/jpstroop/4624253'>gist</a>
+    provided by <a href='http://github.com/jpstroop'>Jon Stroop</a>.
+</p>
+
+
+<div class="description">
+    <h3>Inline Configuration for IIIF Tile Sources</h3>
+    <p>
+        Inline configuration is very straightforward.  The tile source type is
+        identified by its <code>profile</code> attribute and must specify the
+        URL of the tile service with the <code>tilesUrl</code> attribute.
+    </p>
+</div>
+<div class="demoarea">
+    <div class="demoheading">
+        Example Inline Configuration for IIIF
+    </div>
+    <div id="example-inline-configuration-for-iiif"
+         class="openseadragon">
+    </div>
+    <p>
+        In this example we also specified the <code>preserveViewport</code> option to retain the
+        viewport zoom and position when changing pages.
+    </p>
+    <p>
+       In order to make this feel a little more like a basic book turner, we are
+       adding a useful combination of other options that help to constrain the viewport.
+    </p>
+<pre>
+OpenSeadragon({
+    ...
+    preserveViewport: true,
+    visibilityRatio:    1,
+    minZoomLevel:       1,
+    defaultZoomLevel:   1,
+    sequenceMode:       true,
+    tileSources:   [{
+      "@context": "http://iiif.io/api/image/2/context.json",
+      "@id": "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000001.jp2",
+      "height": 7200,
+      "width": 5233,
+      "profile": [ "http://iiif.io/api/image/2/level2.json" ],
+      "protocol": "http://iiif.io/api/image",
+      "tiles": [{
+        "scaleFactors": [ 1, 2, 4, 8, 16, 32 ],
+        "width": 1024
+      }]
+    },
+       ...
+    ]
+    ...
+});</pre>
+</div>
+<script type="text/javascript">
+    OpenSeadragon({
+        id:                 "example-inline-configuration-for-iiif",
+        prefixUrl:          "/openseadragon/images/",
+        preserveViewport:   true,
+        visibilityRatio:    1,
+        minZoomLevel:       1,
+        defaultZoomLevel:   1,
+        sequenceMode:       true,
+        tileSources:   [{
+          "@context": "http://iiif.io/api/image/2/context.json",
+          "@id": "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000001.jp2",
+          "height": 7200,
+          "width": 5233,
+          "profile": [ "http://iiif.io/api/image/2/level2.json" ],
+          "protocol": "http://iiif.io/api/image",
+          "tiles": [{
+            "scaleFactors": [ 1, 2, 4, 8, 16, 32 ],
+            "width": 1024
+          }]
+        },{
+          "@context": "http://iiif.io/api/image/2/context.json",
+          "@id": "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000002.jp2",
+          "height": 7200,
+          "width": 5093,
+          "profile": [ "http://iiif.io/api/image/2/level2.json" ],
+          "protocol": "http://iiif.io/api/image",
+          "tiles": [{
+            "scaleFactors": [ 1, 2, 4, 8, 16, 32 ],
+            "width": 1024
+          }]
+        },{
+          "@context": "http://iiif.io/api/image/2/context.json",
+          "@id": "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000003.jp2",
+          "height": 7200,
+          "width": 5387,
+          "profile": [ "http://iiif.io/api/image/2/level2.json" ],
+          "protocol": "http://iiif.io/api/image",
+          "tiles": [{
+            "scaleFactors": [ 1, 2, 4, 8, 16, 32 ],
+            "width": 1024
+          }]
+        },{
+          "@context": "http://iiif.io/api/image/2/context.json",
+          "@id": "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000004.jp2",
+          "height": 7200,
+          "width": 5434,
+          "profile": [ "http://iiif.io/api/image/2/level2.json" ],
+          "protocol": "http://iiif.io/api/image",
+          "tiles": [{
+            "scaleFactors": [ 1, 2, 4, 8, 16, 32 ],
+            "width": 1024
+          }]
+        }]
+    });
+</script>
+
+<div class="description">
+    <h3>XMLHTTPRequest for IIIF info.json</h3>
+    <p>Note: The following example follows the <a href='http://iiif.io/api/image/2.0/'>IIIF Image API
+    specification, version 2.0.</a>. The older 1.0 XML and JSON syntaxes and 1.1 JSON syntax are also
+    supported. Also note that the Image Server will need to support <a href="http://www.w3.org/TR/cors/">cross-origin
+    resource sharing</a> in order for this to work across different domains.
+    </p>
+</div>
+<div class="demoarea">
+    <div class="demoheading">
+        Example XMLHTTPRequest for IIIF info JSON
+    </div>
+    <div id="example-xmlhttprequest-for-info-json"
+         class="openseadragon">
+        <script type="text/javascript">
+            OpenSeadragon({
+                id:            "example-xmlhttprequest-for-info-json",
+                prefixUrl:     "/openseadragon/images/",
+                sequenceMode:  true,
+                tileSources:   [
+                    "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000001.jp2/info.json",
+                    "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000002.jp2/info.json",
+                    "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000003.jp2/info.json",
+                    "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000004.jp2/info.json",
+                    "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000005.jp2/info.json",
+                    "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000006.jp2/info.json",
+                    "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000007.jp2/info.json"
+                ]
+            });
+        </script>
+        <noscript>
+            <p>OpenSeadragon is not available unless JavaScript is enabled.</p>
+            <img src='/example-images/highsmith/01967v.jpg'
+                 height='600'/>
+        </noscript>
+    </div>
+    <p>
+        Below is a sample IIIF info file containing the minimum amount of information to work with OpenSeadragon.
+    </p>
+<pre>
+  {
+    "@context": "http://iiif.io/api/image/2/context.json",
+    "@id": "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000004.jp2",
+    "height": 7200,
+    "width": 5434,
+    "profile": [ "http://iiif.io/api/image/2/level2.json" ],
+    "protocol": "http://iiif.io/api/image",
+    "tiles": [{
+      "scaleFactors": [ 1, 2, 4, 8, 16, 32 ],
+      "width": 1024
+    }]
+  }</pre>
+<pre>
+OpenSeadragon({
+    ...
+    sequenceMode: true,
+    tileSources: [
+        "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000001.jp2/info.json",
+        "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000002.jp2/info.json",
+        "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000003.jp2/info.json",
+        "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000004.jp2/info.json",
+        "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000005.jp2/info.json",
+        "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000006.jp2/info.json",
+        "https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000007.jp2/info.json"
+    ]
+    ...
+});</pre>
+</div>
+
+
+        <ul class="footer">
+            <li><a href='/#examples-and-features'
+                >Examples &amp; Features</a></li>
+            <li><a href='/#plugins'
+                >Plugins</a></li>
+             <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+            <li><a href='/#download'
+                >Download &amp; Install</a></li>
+            <li><a href='/docs/'
+                >API Documentation</a></li>
+            <li><a href='/#support'
+                >Support</a></li>
+            <li><a href='/#development'
+                >Development</a></li>
+            <li><a href='/license/'
+                >License</a></li>
+        </ul>
+    </div>
+
+    <script> // Google Analytics
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-40891712-1', 'github.io');
+        ga('send', 'pageview');
+    </script>
+
+</body>
+</html>

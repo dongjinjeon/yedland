@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+
+    <link rel="shortcut icon" type="image/png" href="/images/logo16.png">
+    <title>Zoom.it Tile Source | OpenSeadragon</title>
+
+    <link rel='stylesheet' 
+          type='text/css'
+          media='screen'
+          href='/css/style.css'/>
+
+    <script src="/openseadragon/openseadragon.min.js"></script>
+</head>
+
+<body>
+    <a href="https://github.com/openseadragon/openseadragon"><img 
+       style="position: absolute; top: 0; right: 0; border: 0;" 
+       src="/images/forkme_right_darkblue_121621.png" 
+       alt="Fork me on GitHub" /></a>
+    <div id="container">
+        <div class="download">
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.zip">
+                <img border="0" width="90" src="/images/zip.png"></a>
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.tar.gz">
+                <img border="0" width="90" src="/images/tar.png"></a>
+        </div>
+        <img class="logo" src="/images/logo.png">
+        <h1>
+            <a href="/">OpenSeadragon</a><span class="version">
+                3.1.0
+            </span>
+            <span class="tagline">
+            </span>
+        </h1>
+
+        <div class='navigation'>
+            <ul>
+                <li><a href='/#examples-and-features'
+                    >Examples &amp; Features</a></li>
+                <li><a href='/#plugins'
+                    >Plugins</a></li>
+                <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+                <li><a href='/#download'
+                    >Download &amp; Install</a></li>
+                <li><a href='/docs/'
+                    >API Documentation</a></li>
+                <li><a href='/#support'
+                    >Support</a></li>
+                <li><a href='/#development'
+                    >Development</a></li>
+                <li><a href='/#license'
+                    >License</a></li>
+            </ul>
+        </div>
+
+        <h2>
+    example: integrating with zoom.it tiles
+</h2>
+<p><strong>Note: Zoom.it is not currently accepting new images, though hopefully it will in the future.</strong></p>
+<p>
+    <a href="http://zoom.it">Zoom.it</a> provides a simple service-based way
+    of loading images and serving tiles.  The Zoom.it service is based on the
+    DZI format.
+</p>
+<p>
+    OpenSeadragon can render the DZI tiles and provide you all the features
+    you can only get with OpenSeadragon.
+</p>
+<p>
+    To get started:
+</p>
+<ol class="for-examples">
+    <li>Post your source image online somewhere.</li>
+    <li>Paste its URL into <a href="http://zoom.it">http://zoom.it</a>.</li>
+    <li>You can then get the info you need about the resulting image by going to<br><tt>http://api.zoom.it/v1/content/?url=&lt;YOUR_IMAGE_URL&gt;</tt>.</li>
+    <li>See below for how to format that information for OpenSeadragon.</li>
+</ol>
+<p>For more advanced use, see the <a href="http://zoom.it/pages/api/">Zoom.it API</a>.</p>
+
+<div class="description">
+    <h3>Pulling Tiles From Zoom.it</h3>
+    <p>
+        If you are pulling image tiles from Zoom.it, please respect the
+        copyright of the image creator and the policies of the Zoom.it
+        service.
+    </p>
+</div>
+<div class="demoarea">
+    <div class="demoheading">
+        Example Inline Configuration for Rendering DZIs Hosted at Zoom.it
+    </div>
+    <div id="example-zoomit-tilesource" 
+         class="openseadragon">
+        <script type="text/javascript">
+            OpenSeadragon({
+                id:            "example-zoomit-tilesource",
+                prefixUrl:     "/openseadragon/images/",
+                tileSources:   [{ 
+                    Image:  {
+                        xmlns: "http://schemas.microsoft.com/deepzoom/2009",
+                        Url: "http://cache.zoom.it/content/WwI0_files/",
+                        TileSize: "254", 
+                        Overlap: "1", 
+                        Format: "jpg", 
+                        ServerFormat: "Default",
+                        Size: { 
+                            Width: "5816",
+                            Height: "3961"
+                        }
+                    }
+                },{ 
+                    Image:  {
+                        xmlns: "http://schemas.microsoft.com/deepzoom/2009",
+                        Url: "http://static.seadragon.com/content/misc/carina-nebula_files/",
+                        TileSize: "254", 
+                        Overlap: "1", 
+                        Format: "jpg", 
+                        ServerFormat: "Default",
+                        Size: { 
+                            Width: "29566",
+                            Height: "14321"
+                        }
+                    }
+                },{ 
+                    Image:  {
+                        xmlns: "http://schemas.microsoft.com/deepzoom/2009",
+                        Url: "http://static.seadragon.com/content/misc/milwaukee_files/",
+                        TileSize: "254", 
+                        Overlap: "1", 
+                        Format: "jpg", 
+                        ServerFormat: "Default",
+                        Size: { 
+                            Width: "15497",
+                            Height: "5378"
+                        }
+                    }
+                }]
+            });
+        </script>
+        <noscript>
+            <p>OpenSeadragon is not available unless JavaScript is enabled.</p>
+            <img src='/example-images/highsmith/01967v.jpg'
+                 height='600'/>
+        </noscript>
+    </div>
+    
+    <p>
+        Configuration is done via the <code>tileSources</code> option
+        (or programmatically).
+    </p>
+<pre>
+OpenSeadragon({
+    ...
+    tileSources:   [{ 
+        Image:  {
+            xmlns: "http://schemas.microsoft.com/deepzoom/2009",
+            Url: "http://cache.zoom.it/content/WwI0_files/",
+            TileSize: "254", 
+            Overlap: "1", 
+            Format: "jpg", 
+            ServerFormat: "Default",
+            Size: { 
+                Width: "5816",
+                Height: "3961"
+            }
+        }
+    }]
+    ...
+});</pre>
+</div>
+
+
+        <ul class="footer">
+            <li><a href='/#examples-and-features'
+                >Examples &amp; Features</a></li>
+            <li><a href='/#plugins'
+                >Plugins</a></li>
+             <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+            <li><a href='/#download'
+                >Download &amp; Install</a></li>
+            <li><a href='/docs/'
+                >API Documentation</a></li>
+            <li><a href='/#support'
+                >Support</a></li>
+            <li><a href='/#development'
+                >Development</a></li>
+            <li><a href='/license/'
+                >License</a></li>
+        </ul>
+    </div>
+
+    <script> // Google Analytics
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-40891712-1', 'github.io');
+        ga('send', 'pageview');
+    </script>
+
+</body>
+</html>

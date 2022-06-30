@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+
+    <link rel="shortcut icon" type="image/png" href="/images/logo16.png">
+    <title>Overlays | OpenSeadragon</title>
+
+    <link rel='stylesheet' 
+          type='text/css'
+          media='screen'
+          href='/css/style.css'/>
+
+    <script src="/openseadragon/openseadragon.min.js"></script>
+</head>
+
+<body>
+    <a href="https://github.com/openseadragon/openseadragon"><img 
+       style="position: absolute; top: 0; right: 0; border: 0;" 
+       src="/images/forkme_right_darkblue_121621.png" 
+       alt="Fork me on GitHub" /></a>
+    <div id="container">
+        <div class="download">
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.zip">
+                <img border="0" width="90" src="/images/zip.png"></a>
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.tar.gz">
+                <img border="0" width="90" src="/images/tar.png"></a>
+        </div>
+        <img class="logo" src="/images/logo.png">
+        <h1>
+            <a href="/">OpenSeadragon</a><span class="version">
+                3.1.0
+            </span>
+            <span class="tagline">
+            </span>
+        </h1>
+
+        <div class='navigation'>
+            <ul>
+                <li><a href='/#examples-and-features'
+                    >Examples &amp; Features</a></li>
+                <li><a href='/#plugins'
+                    >Plugins</a></li>
+                <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+                <li><a href='/#download'
+                    >Download &amp; Install</a></li>
+                <li><a href='/docs/'
+                    >API Documentation</a></li>
+                <li><a href='/#support'
+                    >Support</a></li>
+                <li><a href='/#development'
+                    >Development</a></li>
+                <li><a href='/#license'
+                    >License</a></li>
+            </ul>
+        </div>
+
+        <h2>example: overlays</h2>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+<p>Overlays are an important mechanism for displaying additional information
+on a zoomable image.  Below we present a few examples of how to
+add some simple overlays.</p>
+
+<p>The tile source in this example is from Chronicling America
+at the <a href='http://www.loc.gov/'>Library of Congress</a>.</p>
+
+<div class="description">
+<h3>Highlighted Overlays</h3>
+<p>Highlighted overlays are useful for directing users' attention to
+specific areas of interest.</p>
+
+<p>OpenSeadragon makes it easy to declare highlighted areas and control
+the presentation through simple CSS mechanisms. A tile source overlay
+is specific to the particular tile source. So if you have a sequence of
+tile sources and want to overlay unique content on each, use this mechanism.
+</p>
+</div>
+
+
+<div class="demoarea">
+    <div class="demoheading">
+        Highlighted Overlays
+    </div>
+    <div id="example-tilesource-overlay" class="openseadragon">
+        <style>
+        .navigator .highlight{
+            opacity:    0.4;
+            filter:     alpha(opacity=40);
+            outline:    2px solid #900;
+            background-color: #900;
+        }
+        .highlight{
+            opacity:    0.4;
+            filter:     alpha(opacity=40);
+            outline:    12px auto #0A7EbE;
+            background-color: white;
+        }
+        .highlight:hover, .highlight:focus{
+            filter:     alpha(opacity=70);
+            opacity:    0.7;
+            background-color: transparent;
+        }
+        </style>
+        <script type="text/javascript">
+            var chronicling_america_example = function( sequence ){
+                return function(level, column, row){
+                    var px = 0;
+                    if (column !== 0) {
+                        px = this.getTileWidth() * column - this.tileOverlap;
+                    }
+                    var py = 0;
+                    if (row !== 0) {
+                        py = this.getTileHeight() * row - this.tileOverlap;
+                    }
+                    var scale = this.getLevelScale(level);
+                    var dimensionsScaled = this.dimensions.times(scale);
+
+                    // find the dimension of the tile, adjust for no
+                    // overlap data on top and left edges
+                    var sx = this.getTileWidth() +
+                            (column === 0 ? 1 : 2) * this.tileOverlap;
+                    var sy = this.getTileHeight() +
+                        (row === 0 ? 1 : 2) * this.tileOverlap;
+
+                    // adjust size for single-tile levels where the image
+                    // size is smaller than the regular tile size, and for
+                    // tiles on the bottom and right edges that would
+                    // exceed the image bounds.
+                    sx = Math.min(sx, dimensionsScaled.x - px);
+                    sy = Math.min(sy, dimensionsScaled.y - py);
+
+                    var tile_width = parseInt(sx);
+                    var tile_height = parseInt(sy);
+
+                    var x1 = parseInt(px / scale);
+                    var y1 = parseInt(py / scale);
+                    var x2 = parseInt((px + sx) / scale);
+                    var y2 = parseInt((py + sy) / scale);
+
+                    return 'http://chroniclingamerica.loc.gov/lccn/sn85066387/1898-01-09/ed-1/seq-' +
+                        sequence + '/' +
+                        'image_' + tile_width + 'x' + tile_height +
+                        '_from_' + x1 + ',' + y1 +
+                        '_to_' + x2 + ',' + y2 + '.jpg';
+                };
+            };
+
+            OpenSeadragon({
+                id:            "example-tilesource-overlay",
+                prefixUrl:     "/openseadragon/images/",
+                sequenceMode: true,
+                tileSources: [{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    overlays: [{
+                        id: 'example-overlay',
+                        x: 0.33,
+                        y: 0.75,
+                        width: 0.2,
+                        height: 0.25,
+                        className: 'highlight'
+                    }],
+                    getTileUrl: chronicling_america_example(17)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(18)
+                }],
+                onPageChange: function() {
+                    //Tooltips
+                    setTimeout(bindtooltip, 2000);
+                }
+            });
+
+            jQuery(function() {
+                //Tooltips
+                setTimeout(bindtooltip, 2000);
+            });
+
+            function bindtooltip(){
+                var tip = jQuery('#example-tip');
+                jQuery("#example-overlay").hover(function(e){
+                    var mousex = e.pageX + 20, //Get X coodrinates
+                        mousey = e.pageY + 20, //Get Y coordinates
+                        tipWidth = tip.width(), //Find width of tooltip
+                        tipHeight = tip.height(), //Find height of tooltip
+
+                    //Distance of element from the right edge of viewport
+                        tipVisX = $(window).width() - (mousex + tipWidth),
+                    //Distance of element from the bottom of viewport
+                        tipVisY = $(window).height() - (mousey + tipHeight);
+
+                    if ( tipVisX < 20 ) { //If tooltip exceeds the X coordinate of viewport
+                        mousex = e.pageX - tipWidth - 20;
+                    } if ( tipVisY < 20 ) { //If tooltip exceeds the Y coordinate of viewport
+                        mousey = e.pageY - tipHeight - 20;
+                    }
+                    tip.css({  top: mousey, left: mousex, position: 'absolute' });
+                    tip.show().css({opacity: 0.8}); //Show tooltip
+                }, function() {
+                    tip.hide(); //Hide tooltip
+                });
+            };
+        </script>
+
+        <div id="example-tip" style='display:none;width:250px;background-color:#fff;'>
+            <p>
+                The overlay can provide a class name and ID to bind additional events to.
+            </p>
+        </div>
+    </div>
+</div>
+<p>
+    The relevant configuration options are shown below.<br>
+    The <code>className</code> and <code>id</code> attributes will be passed to the
+    overlay element so you can bind CSS styles and events to it.
+    <em>Be sure to put your styles in the document head, inside the
+    OpenSeadragon viewer element, or apply them dynamically so they will persist
+    when full-screen mode is entered.</em><br>
+    Prefer using <code>outline</code> instead of <code>border</code> to highlight
+    the contours. Borders affect the size of the element causing the overlay to
+    be misplaced.
+</p>
+
+<pre>
+OpenSeadragon({
+    ...
+    tileSources: [{
+        ...
+        overlays: [{
+            id: 'example-overlay',
+            x: 0.33,
+            y: 0.75,
+            width: 0.2,
+            height: 0.25,
+            className: 'highlight'
+        }],
+        ...
+    }]
+    ...
+});
+</pre>
+
+<div class="description">
+    <h3>Fixed size Overlays</h3>
+    <p>
+        If you would like an overlay to point to a specific point in the image,
+        you can omit the width and height parameters. In that case, the overlay
+        will keep the same size independently of the zoom level. It is also
+        possible to set which part of the overlay should be at the specified
+        location by specifying a
+        <a href="/docs/OpenSeadragon.html#.Placement">placement</a>.
+        For example, if your overlay is an arrow pointing to the right, you
+        should set the placement to RIGHT.
+    </p>
+</div>
+
+
+<div class="demoarea">
+    <div class="demoheading">
+        Fixed size Overlays
+    </div>
+    <img id="right-arrow-overlay"
+         src="http://upload.wikimedia.org/wikipedia/commons/7/7a/Red_Arrow_Right.svg"
+         alt="Right arrow"
+         width="20">
+    <div id="example-point-overlay" class="openseadragon">
+        <script type="text/javascript">
+            OpenSeadragon({
+                id:            "example-point-overlay",
+                prefixUrl:     "/openseadragon/images/",
+                tileSources: [{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(10),
+                    overlays: [{
+                        id: 'right-arrow-overlay',
+                        x: 0.2008,
+                        y: 0.4778,
+                        placement: 'RIGHT',
+                        checkResize: false
+                    }]
+                }]
+            });
+
+        </script>
+    </div>
+</div>
+
+<p>
+    The coordinates specified are those of the hand of the statue.<br>
+    Note the <code>checkResize</code> property set to false. Because the
+    arrow will not change size, we can tell OpenSeadragon to not verify its size
+    at every frame. This improve performances if you have a lot of overlays.
+</p>
+
+<pre>
+OpenSeadragon({
+    ...
+    overlays: [{
+        id: 'right-arrow-overlay',
+        x: 0.2008,
+        y: 0.4778,
+        placement: 'RIGHT',
+        checkResize: false
+    }],
+    ...
+});
+</pre>
+
+<div class="description">
+    <h3>Viewport Overlays</h3>
+    <p>
+        OpenSeadragon also supports overlays that persist across image
+        sequences.  In this case the overlay is simply configured outside of
+        the <code>tileSource</code>.
+    </p>
+    <p>
+        This example also demonstrates the ability to configure the overlay
+        position in terms of image pixel coordinates.  The difference is
+        inferred from the use of <code>px</code> and <code>py</code> instead
+        of <code>x</code> and <code>y</code>.
+    </p>
+</div>
+
+<div class="demoarea">
+    <div class="demoheading">
+        Viewport Overlays
+    </div>
+    <div id="example-viewport-overlay" class="openseadragon">
+    <style>
+    .filter{
+        opacity:    0.2;
+        filter:     alpha(opacity=20);
+        background-color: #7FFF00;
+    }
+    </style>
+    <script type="text/javascript">
+        OpenSeadragon({
+            id:            "example-viewport-overlay",
+            prefixUrl:     "/openseadragon/images/",
+            sequenceMode:  true,
+            overlays: [{
+                id: 'global-overlay-filter',
+                px: 0,
+                py: 0,
+                width: 6425,
+                height: 8535,
+                className: 'filter'
+            }],
+            tileSources: [{
+                minLevel: 8,
+                width: 6425,
+                height: 8535,
+                tileSize: 256,
+                tileOverlap: 1,
+                getTileUrl: chronicling_america_example(19)
+            },{
+                minLevel: 8,
+                width: 6425,
+                height: 8535,
+                tileSize: 256,
+                tileOverlap: 1,
+                getTileUrl: chronicling_america_example(20)
+            }]
+        });
+
+    </script>
+    </div>
+
+<pre>
+OpenSeadragon({
+    ...
+    overlays: [{
+        id: 'global-overlay-filter',
+        px: 0,
+        py: 0,
+        width: 6425,
+        height: 8535,
+        className: 'filter'
+    }],
+    ...
+});
+</pre>
+</div>
+
+<div class="description">
+    <h3>
+        Overlaying Complex HTML
+    </h3>
+    <p>
+        By default OpenSeadragon checks for an existing element in the DOM
+        that matches the overlay ID (if one is specified).  If that content
+        is found, OpenSeadragon will use it for the overlay.  Otherwise, it
+        will create a link to ensure keyboard accessibilty to the target (as
+        in the examples above).
+    </p>
+    <p>
+        In this example we display some additional metadata to the right of the image itself.
+    </p>
+</div>
+
+<div class="demoarea">
+    <div class="demoheading">
+        Overlaying Complex HTML
+    </div>
+    <div id="complex-html-overlay" class="openseadragon">
+        <script type="text/javascript">
+            OpenSeadragon({
+                id:            "complex-html-overlay",
+                prefixUrl:     "/openseadragon/images/",
+                showNavigator: false,
+                preserveViewport: true,
+                sequenceMode:  true,
+                overlays: [{
+                    px: 6425,
+                    py: 0,
+                    id: 'html-overlay'
+                }],
+                tileSources: [{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(1)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(2)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(3)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(4)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(5)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(6)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(7)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(8)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(9)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(10)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(11)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(11)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(12)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(13)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(14)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(15)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(16)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(17)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(18)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(19)
+                },{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(20)
+                }]
+            }).addOnceHandler('open', function(event) {
+                var viewer = event.eventSource;
+                // Make sure the overlay is entirely visible at opening.
+                viewer.viewport.fitBounds(new OpenSeadragon.Rect(0, 0, 1.5, 1.32), true);
+                new OpenSeadragon.MouseTracker({
+                  element: 'html-overlay',
+                  clickHandler: function(event) {
+                    var target = event.originalEvent.target;
+                    if (target.matches('a')) {
+                      if (target.getAttribute('target') === '_blank') {
+                        window.open(target.getAttribute('href'));
+                      } else {
+                        location.href = target.getAttribute('href');
+                      }
+                    }
+                  }
+                });
+            });
+
+
+        </script>
+        <style>
+        .navigator .no-overlay-in-navigator{
+               display:none;
+        }
+        #html-overlay{
+            opacity:    0.7;
+            color: #fff;
+            filter:     alpha(opacity=70);
+            width: 300px;
+        }
+        #html-overlay .info{
+            padding: 20px;
+        }
+        #html-overlay dt{
+            font-weight: bold;
+        }
+        #html-overlay dl ul{
+            padding: 0px;
+        }
+        </style>
+        <div id='html-overlay' style=''>
+
+            <div class="info">
+                <dl class="alt">
+                    <dt>Title: </dt>
+                    <dd>
+                    The San Francisco call. : (San Francisco [Calif.]) 1895-1913
+                    </dd>
+
+                    <dt>Alternative Titles:</dt>
+                    <dd>
+                        <ul class="bullet_blue">
+                            <li> Call </li>
+                            <li>Call chronicle examiner</li>
+                            <li>Call-chronicle-examinerApr. 19, 1906 </li>
+                            <li>Sunday call &lt;Dec. 5, 1901&gt; </li>
+                        </ul>
+                    </dd>
+
+                    <dt>Preceding Titles:</dt>
+                    <dd>
+                    <ul class="bullet_blue">
+                    <li><a href="http://chroniclingamerica.loc.gov/lccn/sn94052989/" target="_blank">The morning call. (San Francisco [Calif.]) 1878-1895</a></li>
+                    </ul>
+                    </dd>
+                </dl>
+                <a  style=''
+                    href="http://chroniclingamerica.loc.gov/lccn/sn85066387/1895-03-05/ed-1/seq-1/">
+                    <img class="thumbnail"
+                         src="http://chroniclingamerica.loc.gov/lccn/sn85066387/1895-03-05/ed-1/seq-1/thumbnail.jpg" alt="">
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+<pre>
+OpenSeadragon({
+    ...
+    preserveViewport: true,
+    showNavigator: false,
+    sequenceMode:  true,
+    overlays: [{
+        px: 6425,
+        py: 0,
+        id: 'html-overlay'
+    }],
+    tileSources: [{
+        width: 6425,
+        height: 8535,
+        tileSize: 256,
+        tileOverlap: 1,
+        getTileUrl: chronicling_america_example(1)
+    },{
+        ...
+    }]
+}).addOnceHandler('open', function(event) {
+    ...
+    // MouseTracker is required for links to function in overlays
+    new OpenSeadragon.MouseTracker({
+        element: 'html-overlay',
+        clickHandler: function(event) {
+            var target = event.originalEvent.target;
+            if (target.matches('a')) {
+                if (target.getAttribute('target') === '_blank') {
+                    window.open(target.getAttribute('href'));
+                } else {
+                    location.href = target.getAttribute('href');
+                }
+            }
+        }
+    });
+});
+</pre>
+</div>
+
+<div class="description">
+    <h3>Runtime Overlays</h3>
+    <p>
+        It is also possible to add overlays at runtime via
+        <a href="/docs/OpenSeadragon.Viewer.html#addOverlay">Viewer.addOverlay</a>.
+    </p>
+</div>
+
+<div class="demoarea">
+    <div class="demoheading">
+        Runtime Overlays
+    </div>
+    <button id="toggle-overlay">Toggle overlay</button>
+    <div id="example-runtime-overlay" class="openseadragon"/>
+    <style>
+    .filter{
+        opacity:    0.2;
+        filter:     alpha(opacity=20);
+        background-color: #7FFF00;
+    }
+    </style>
+    <script type="text/javascript">
+        var runtimeViewer = OpenSeadragon({
+            id:            "example-runtime-overlay",
+            prefixUrl:     "/openseadragon/images/",
+            tileSources: [{
+                minLevel: 8,
+                width: 6425,
+                height: 8535,
+                tileSize: 256,
+                tileOverlap: 1,
+                getTileUrl: chronicling_america_example(17)
+            }]
+        });
+        var overlay = false;
+        document.querySelector('#toggle-overlay').addEventListener('click', function() {
+            if (overlay) {
+                runtimeViewer.removeOverlay("runtime-overlay");
+            } else {
+                var elt = document.createElement("div");
+                elt.id = "runtime-overlay";
+                elt.className = "highlight";
+                runtimeViewer.addOverlay({
+                    element: elt,
+                    location: new OpenSeadragon.Rect(0.33, 0.75, 0.2, 0.25)
+                });
+            }
+            overlay = !overlay;
+        });
+    </script>
+    </div>
+
+<pre>
+var viewer = OpenSeadragon({
+    id:            "example-runtime-overlay",
+    ...
+});
+var overlay = false;
+document.querySelector('#toggle-overlay').addEventListener('click', function() {
+    if (overlay) {
+        viewer.removeOverlay("runtime-overlay");
+    } else {
+        var elt = document.createElement("div");
+        elt.id = "runtime-overlay";
+        elt.className = "highlight";
+        viewer.addOverlay({
+            element: elt,
+            location: new OpenSeadragon.Rect(0.33, 0.75, 0.2, 0.25)
+        });
+    }
+    overlay = !overlay;
+});
+</pre>
+</div>
+
+<div class="description">
+    <h3>Overlays and rotation</h3>
+    <p>
+        By default, the overlays get rotated with the viewport. One can
+        change this behavior by setting the rotation mode property.
+        NO_ROTATION will ignore the rotation. If both width and height are
+        specified, BOUNDING_BOX will adapt the size of the overlay to contains
+        the rotated rectangle.
+    </p>
+</div>
+
+<div class="demoarea">
+    <div class="demoheading">
+        Use the slider bar to set the rotation angle
+    </div>
+    <div id="slider" style="margin: 10px"></div>
+    <img id="right-arrow-overlay-no-rotate"
+         src="http://upload.wikimedia.org/wikipedia/commons/7/7a/Red_Arrow_Right.svg"
+         alt="Right arrow"
+         width="20">
+    <div id="example-overlay-rotation" class="openseadragon"/>
+    <style>
+    #overlay-rotation-exact {
+        opacity:    0.4;
+        background-color: #7FFF00;
+    }
+    #overlay-rotation-bounding-box {
+        opacity:    0.4;
+        background-color: #E9DC51;
+    }
+    </style>
+    <script type="text/javascript">
+        var rotationViewer = OpenSeadragon({
+            id:            "example-overlay-rotation",
+            prefixUrl:     "/openseadragon/images/",
+            tileSources: [{
+                    minLevel: 8,
+                    width: 6425,
+                    height: 8535,
+                    tileSize: 256,
+                    tileOverlap: 1,
+                    getTileUrl: chronicling_america_example(16)
+                }],
+            overlays: [{
+                id: 'overlay-rotation-exact',
+                x: 0.059,
+                y: 0.08,
+                width: 0.46,
+                height: 0.59,
+                rotationMode: OpenSeadragon.OverlayRotationMode.EXACT
+            }, {
+                id: 'right-arrow-overlay-no-rotate',
+                x: 0.492,
+                y: 0.496,
+                placement: OpenSeadragon.Placement.RIGHT,
+                rotationMode: OpenSeadragon.OverlayRotationMode.NO_ROTATION
+            }, {
+                id: 'overlay-rotation-bounding-box',
+                x: 0.72,
+                y: 1,
+                width: 0.12,
+                height: 0.18,
+                rotationMode: OpenSeadragon.OverlayRotationMode.BOUNDING_BOX
+            }]
+        });
+        $("#slider").slider({
+            min: -180,
+            max: 180,
+            slide: function(event, ui) {
+                rotationViewer.viewport.setRotation(ui.value);
+            }
+        });
+    </script>
+    </div>
+
+<pre>
+var viewer = OpenSeadragon({
+    id:            "example-overlay-rotation",
+    ...,
+    overlays: [{
+        id: 'overlay-rotation-exact', // Green overlay
+        x: 0.059,
+        y: 0.08,
+        width: 0.46,
+        height: 0.59,
+        rotationMode: OpenSeadragon.OverlayRotationMode.EXACT
+    }, {
+        id: 'right-arrow-overlay-no-rotate', // Arrow pointing to the tip of the hair
+        x: 0.492,
+        y: 0.496,
+        placement: OpenSeadragon.Placement.RIGHT,
+        rotationMode: OpenSeadragon.OverlayRotationMode.NO_ROTATION
+    }, {
+        id: 'overlay-rotation-bounding-box', // Yellow overlay
+        x: 0.72,
+        y: 1,
+        width: 0.12,
+        height: 0.18,
+        rotationMode: OpenSeadragon.OverlayRotationMode.BOUNDING_BOX
+    }]
+});
+</pre>
+</div>
+
+
+        <ul class="footer">
+            <li><a href='/#examples-and-features'
+                >Examples &amp; Features</a></li>
+            <li><a href='/#plugins'
+                >Plugins</a></li>
+             <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+            <li><a href='/#download'
+                >Download &amp; Install</a></li>
+            <li><a href='/docs/'
+                >API Documentation</a></li>
+            <li><a href='/#support'
+                >Support</a></li>
+            <li><a href='/#development'
+                >Development</a></li>
+            <li><a href='/license/'
+                >License</a></li>
+        </ul>
+    </div>
+
+    <script> // Google Analytics
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-40891712-1', 'github.io');
+        ga('send', 'pageview');
+    </script>
+
+</body>
+</html>

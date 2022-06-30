@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+
+    <link rel="shortcut icon" type="image/png" href="/images/logo16.png">
+    <title>Zoomify Tile Source | OpenSeadragon</title>
+
+    <link rel='stylesheet' 
+          type='text/css'
+          media='screen'
+          href='/css/style.css'/>
+
+    <script src="/openseadragon/openseadragon.min.js"></script>
+</head>
+
+<body>
+    <a href="https://github.com/openseadragon/openseadragon"><img 
+       style="position: absolute; top: 0; right: 0; border: 0;" 
+       src="/images/forkme_right_darkblue_121621.png" 
+       alt="Fork me on GitHub" /></a>
+    <div id="container">
+        <div class="download">
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.zip">
+                <img border="0" width="90" src="/images/zip.png"></a>
+            <a href="https://github.com/openseadragon/openseadragon/releases/download/v3.1.0/openseadragon-bin-3.1.0.tar.gz">
+                <img border="0" width="90" src="/images/tar.png"></a>
+        </div>
+        <img class="logo" src="/images/logo.png">
+        <h1>
+            <a href="/">OpenSeadragon</a><span class="version">
+                3.1.0
+            </span>
+            <span class="tagline">
+            </span>
+        </h1>
+
+        <div class='navigation'>
+            <ul>
+                <li><a href='/#examples-and-features'
+                    >Examples &amp; Features</a></li>
+                <li><a href='/#plugins'
+                    >Plugins</a></li>
+                <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+                <li><a href='/#download'
+                    >Download &amp; Install</a></li>
+                <li><a href='/docs/'
+                    >API Documentation</a></li>
+                <li><a href='/#support'
+                    >Support</a></li>
+                <li><a href='/#development'
+                    >Development</a></li>
+                <li><a href='/#license'
+                    >License</a></li>
+            </ul>
+        </div>
+
+        <h2>
+    example: zoomify tile support
+</h2>
+<p>
+    <a href="http://www.zoomify.com/">Zoomify</a> was a popular viewer to display large images in the past with Flash (and now without it, of course). It is still used in various places, because it is not only a viewer, but a tile builder too and it has some enterprise features. Its popularity was related to the fact that an extension was added to a popular commercial image application. An old description of the format can be found <a href="https://ecommons.cornell.edu/bitstream/handle/1813/5410/Introducing_Zoomify_Image.pdf">here</a>.
+</p>
+<p>
+    The tile sources can be produced by the commercial tool Zoomify, but scripts were written for common web languages (see <a href="/examples/creating-zooming-images/">creating zooming images</a>). Other common viewers support this format, for example <a href="https://openlayers.org/en/latest/examples/zoomify.html">OpenLayers</a>.
+</p>
+<p>
+    OpenSeadragon supports Zoomify tiles thanks to <a href="https://github.com/foobarable">foobarable</a>.
+</p>
+
+<div class="description">
+    <h3>Inline Configuration for Zoomify</h3>
+    <p>
+        Currently, only inline configuration is supported, because Zoomify metadata are not in a standard xml file.
+    </p>
+</div>
+<div class="demoarea">
+    <div class="demoheading">
+        Example Inline Configuration for Zoomify
+    </div>
+    <div id="example-inline-configuration-for-zoomify"
+         class="openseadragon">
+    </div>
+    <p>
+        Supply all necessary information in the <code>tilesource</code> object. A minimal example object for this method looks like this:
+    </p>
+<pre>
+OpenSeadragon({
+    ...
+    tileSources: [{
+        //required	
+        type:       "zoomifytileservice",
+        width:      7026,
+        height:     9221,
+        tilesUrl:   "/test/data/zoomify/",
+        //optional
+        tileSize: 256,
+        fileFormat: 'jpg'	
+    }]
+    ...
+});</pre>
+</div>
+<script type="text/javascript">
+    OpenSeadragon({
+        id:             "example-inline-configuration-for-zoomify",
+        prefixUrl:      "/openseadragon/images/",
+        showNavigator:  true,
+        tileSources:    [{
+            type:       "zoomifytileservice",
+            width:      7026,
+            height:     9221,
+            tilesUrl:   "/example-images/highsmith/highsmith_zdata/"
+        }]
+    });
+</script>
+
+
+        <ul class="footer">
+            <li><a href='/#examples-and-features'
+                >Examples &amp; Features</a></li>
+            <li><a href='/#plugins'
+                >Plugins</a></li>
+             <li><a href='/#browser-extension'
+                    >Browser Extension</a></li>
+            <li><a href='/#download'
+                >Download &amp; Install</a></li>
+            <li><a href='/docs/'
+                >API Documentation</a></li>
+            <li><a href='/#support'
+                >Support</a></li>
+            <li><a href='/#development'
+                >Development</a></li>
+            <li><a href='/license/'
+                >License</a></li>
+        </ul>
+    </div>
+
+    <script> // Google Analytics
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-40891712-1', 'github.io');
+        ga('send', 'pageview');
+    </script>
+
+</body>
+</html>
